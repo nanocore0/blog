@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:replace="~{fragments/head-meta :: head-meta}">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Thymeleaf in action</title>
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../static/font-awesome-4.7.0/css/font-awesome.min.css" th:href="@{~/font-awesome-4.7.0/css/font-awesome.min.css}">
+<link rel="stylesheet" href="../../static/css/sticky-footer-navbar.css" th:href="@{~/css/blog.css}">
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="container blog-content-container">
+  <div class="row">
+    <!-- 左侧栏目 -->
+    <div class="col-md-3">
+      <div class="card">
+        <div class="text-center">
+          <a class="blog-edit-avatar" role="button">
+            <img class="blog-avatar blog-avatar-180" src="../../static/images/avatar-defualt.jpg" th:src="${user.avatar} == null ? '/images/avatar-defualt.jpg' : ${user.avatar}"  th:alt="${#authentication.name}" />
+          </a>
+          <h5>
+           <a href="javascript:void(0)" class="text-muted" th:text="${user.name}">一舞翩跹</a>
+          </h5>
+          <div class="card-footer"></div>
+        </div><!-- .card end -->
+      </div>
+
+      <!-- 分类 -->
+      <div id="catalogMain">
+        <div class="card my-3" id="catalogRepleace">
+          <div class="card-header">
+            <div class="d-flex justify-content-between">
+              <div>
+                <i class="fa fa-bars" aria-hidden="true"></i> <span>分类</span>
+              </div>
+              <div>
+                <a class="blog-add-catalog" href="javascript:void(0)" data-toggle="modal" data-target="#exampleModal" role="button" th:if="${isCatalogsOwner}">
+                  <i class="fa fa-plus" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between" th:each="catalog : ${catalogs}" th:object="${catalog}">
+              <div>
+                <a href="javascript:void(0)" title="Spring Data" class="blog-query-by-catalog" th:text="*{name}" th:attr="catalogId=*{id}" >Spring Data</a>
+              </div>
+              <div>
+                <span class="blog-right">
+             	  <a class="blog-edit-catalog" href="javascript:void(0)" data-toggle="modal" data-target="#exampleModal" role="button" th:if="${isCatalogsOwner}" th:attr="catalogId=*{id}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+             	  <a class="blog-delete-catalog" href="javascript:void(0)" th:if="${isCatalogsOwner}" th:attr="catalogId=*{id}"><i class="fa fa-times" aria-hidden="true"></i></a>
+          		</span>
+              </div>
+            </li>
+            <!-- /*
+            <li class="list-group-item d-flex justify-content-between">
+              <div>
+                <a href="#" title="Spring Data">分布式系统 <span class="badge badge-success badge-pill">11115</span></a>
+              </div>
+              <div>
+                <span class="blog-right">
+             	  <a class="blog-edit-catalog" href="javascript:void(0)" data-toggle="modal" data-target="#exampleModal" role="button" th:if="${isCatalogsOwner}" th:attr="catalogId=*{id}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+             	  <a class="blog-delete-catalog" href="javascript:void(0)" th:if="${isCatalogsOwner}" th:attr="catalogId=*{id}"><i class="fa fa-times" aria-hidden="true"></i></a>
+         		  </span>
+              </div>
+            </li>
+            */ -->
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 右侧栏目 -->
+    <div class="col-md-9">
+      <!-- 工具栏 -->
+      <nav class="navbar navbar-light bg-light rounded mb-2">
+        <ul class="nav nav-pills  mr-auto">
+          <li class="nav-item">
+            <a class="nav-link active blog-new-hot" data-th-classappend="${order} eq 'new' ? 'active' : ''" href="javascript:void(0)" th:attr="url='/u/'+${user.username}+'/blogs?order=new'">最新</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link blog-new-hot" data-th-classappend="${order} eq 'hot' ? 'active' : ''" href="javascript:void(0)" th:attr="url='/u/'+${user.username}+'/blogs?order=hot'">最热</a>
+          </li>
+        </ul>
+        <form class="form-inline mt-2 mt-md-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" id="keyword">
+          <a href="javascript:void(0)" class="btn btn-outline-success my-2 my-sm-0" id="searchBlogs">
+            <i class="fa fa-search" aria-hidden="true"></i>
+          </a>
+        </form>
+      </nav>
+      <!-- Blog Post -->
+      <div id="mainContainer">
+        <div id="mainContainerRepleace">
+          <div class="card mb-3" th:each="blog : ${blogList}">
+            <div class="card-body">
+              <h5 class="card-title">
+                <a href="javascript:void(0)" class="card-link" th:href="'/blogs/'+ ${blog.id}"  th:title="${blog.user.username}" th:text="${blog.title}">OAuth 2.0 认证的原理与实践</a>
+              </h5>
+              <p class="card-text" th:text="${blog.summary}">使用 OAuth 2.0 认证的的好处是显然易见的。你只需要用同一个账号密码，就能在各个网站进行访问，而免去了在每个网站都进行注册的繁琐过程。 本文将介绍OAuth 2.0 的原理，并基于 Spring Security 和 GitHub 账号，来演示 OAuth 2.0 的认证的过程。</p>
+              <div class="card-text text-muted d-flex justify-content-between small">
+                <div>
+                  <span th:text="'发表于' + ${#dates.format(blog.createTime, 'yyyy-MM-dd HH:mm')}" >发表于 2019-4-10</span>
+                </div>
+                <div class="text-muted small">
+                  <span class="ml-2"><i class="fa fa-eye" aria-hidden="true"></i> [[${blog.readSize}]]</span>
+                  <span class="ml-2"><i class="fa fa-heart-o" aria-hidden="true"></i> [[${blog.voteSize}]]</span>
+                  <span class="ml-2"><i class="fa fa-comment-o"aria-hidden="true"></i> [[${blog.commentSize}]]</span>
+                </div>
+              </div>
+            </div>
+          </div><!-- card end --> 
+          
+          
+           <div th:replace="~{fragments/page :: page}">...</div>
+        </div>
+      </div>
+    </div>
+    
+  </div><!-- .row -->
+</main><!-- .container -->
+
+<!-- 新建分类 modal -->
+<div class="modal" id="exampleModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">新建分类</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="catalogFormContainer"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="submitEditCatalog">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<!-- Javascript -->
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<!-- 分页插件 -->
+<script src="../../static/js/thymeleaf-bootstrap-paginator.js" th:src="@{/js/thymeleaf-bootstrap-paginator.js}"></script>
+<!-- toastr 通知插件 -->
+<script src="https://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+
+<script th:inline="javascript">
+	var username = [[${user.username}]];
+	var catalogId = [[${catalogId}]];
+</script>
+<script src="../../static/js/userspace/u.js" th:src="@{/js/userspace/u.js}"></script>
+
+</body>
+</html>

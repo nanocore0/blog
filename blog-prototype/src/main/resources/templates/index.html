@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+  <head th:replace="~{fragments/head-meta :: head-meta}">
+    <meta charset="UTF-8">
+    <title>Thymeleaf in action</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../static/css/sticky-footer-navbar.css">
+    <link rel="stylesheet" href="../static/css/index.css">
+  </head>
+  <body>
+
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <main class="container blog-container" role="main">
+      <div class="row">
+        <!-- 博客条目列表 -->
+        <div class="col-lg-9  article">
+
+          <!-- Blog Post -->
+          <div class="card mb-4">
+            <div class="card-body">
+              <!-- 头像及标题 -->
+              <h1 class="card-title">
+	              <span>
+                  <a href="#">
+                  <img class="blog-avatar-50" src="../static/images/avatar-defualt.jpg"/>
+                  </a>
+                </span>
+                <a href="#" class="card-link">OAuth 2.0 认证的原理与实践</a>
+              </h1>
+              <!-- 发布信息 -->
+              <div class="card-text d-flex justify-content-between">
+                <div class="text-muted text-gray-dark">
+                  <a href="#" class="card-link text-muted">一舞翩跹</a>
+                  <span>发表于 2017-03-17</span>
+                </div>
+                <div class="text-muted">
+                  <i class="fa fa-eye" aria-hidden="true">120</i>
+                  <i class="fa fa-heart-o" aria-hidden="true">22</i>
+                  <i class="fa fa-comment-o" aria-hidden="true">12</i>
+                </div>
+              </div>
+              <!-- 摘要 -->
+              <p class="card-text">使用 OAuth 2.0认证的的好处是显然易见的。你只需要用同一个账号密码，就能在各个网站进行访问，而免去了在每个网站都进行注册的繁琐过程。 本文将介绍OAuth 2.0 的原理，并基于 Spring Security 和 GitHub 账号，来演示 OAuth 2.0 的认证的过程。</p>
+            </div>
+          </div><!-- card end -->
+
+          <!-- /* -->
+          <div class="card mb-4">
+            <div class="card-block">
+              <h5 class="card-title">
+                <span>
+                  <a href="/u/waylau" title="waylau">
+                    <img class="blog-avatar-50" src="https://waylau.com/images/waylau_181_181.jpg"  alt="waylau">
+                  </a>
+                </span>
+                <a href="/u/waylau/blogs/1" class="card-link" title="waylau">Spring Data + Thymeleaf 3 + Bootstrap 4 实现分页器</a>
+              </h5>
+              <p class="card-text">实际上分页器或者分页组件在现实中都有广泛着的应用，照理来说老卫没有必要单独撰文来提这茬。事实是，我近期刚好在写一门关于SpringData、Thymeleaf 3、Bootstrap 4 的应用课程，所以用了Bootstrap 4的样式，结果之前很多例如 Bootstrap 3的表格、分页器啊之类的插件都不能很好的兼容，百度谷歌无果，而且 Bootstrap 4 还没有出稳定版本，官网的示例也是少的可怜，最终下决心要自己写个分页器了，所用到的技术就是 SpringData、Thymeleaf 3、Bootstrap 4 。</p>
+              <div class="card-text">
+                <a href="/u/waylau" class="card-link">waylau</a>
+                <span>发表于 2017-03-17</span>
+                <i class="fa fa-eye" aria-hidden="true">1</i> <i class="fa fa-heart-o" aria-hidden="true">130</i> <i class="fa fa-comment-o" aria-hidden="true">0</i>
+                </div>
+            </div>
+          </div>
+
+          <div class="card mb-4">
+            <div class="card-block">
+              <h5 class="card-title">
+                <span>
+                  <a href="/u/waylau" title="waylau">
+                    <img class="blog-avatar-50" src="https://waylau.com/images/waylau_181_181.jpg"  alt="waylau">
+                  </a>
+                </span>
+                <a href="/u/waylau/blogs/1" class="card-link" title="waylau">用大白话聊聊分布式系统</a>
+              </h5>
+              <p class="card-text">一提起“分布式系统”，大家的第一感觉就是好高大上啊，深不可测，看各类大牛关于分布式系统的演讲或者书籍，也大多是一脸懵逼。本文期望用浅显易懂的大白话来就什么是分布式系统、分布式系统有哪些优势、分布式系统会面临哪里挑战、如何来设计分布式等方面的话题来展开讨论。</p>
+              <div class="card-text">
+                <a href="/u/waylau" class="card-link">waylau</a>
+                <span>发表于 2017-03-17</span>
+                <i class="fa fa-eye" aria-hidden="true">2</i> <i class="fa fa-heart-o" aria-hidden="true">0</i> <i class="fa fa-comment-o" aria-hidden="true">10</i>
+                </div>
+            </div>
+          </div>
+
+          <div class="card mb-4">
+            <div class="card-block">
+              <h5 class="card-title">
+                <span>
+                  <a href="/u/waylau" title="waylau">
+                    <img class="blog-avatar-50" src="https://waylau.com/images/waylau_181_181.jpg"  alt="waylau">
+                  </a>
+                </span>
+                <a href="/u/waylau/blogs/1" class="card-link" title="waylau">zTree 的新增按钮不显示</a>
+              </h5>
+              <p class="card-text">zTree 的新增按钮不显示，但是编辑和删除等操作的按钮都正常。在官方的DEMO中，新增按钮也是正常的</p>
+              <div class="card-text">
+                <a href="/u/waylau" class="card-link">waylau</a>
+                <span>发表于 2017-03-17</span>
+                <i class="fa fa-eye" aria-hidden="true">2</i> <i class="fa fa-heart-o" aria-hidden="true">0</i> <i class="fa fa-comment-o" aria-hidden="true">10</i>
+              </div>
+            </div>
+          </div>
+          <!-- */ -->
+
+          <!-- 分页 -->
+          <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center mb-4">
+              <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                  <span class="sr-only">Previous</span>
+                </a>
+              </li>
+              <li class="page-item active"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </li>
+            </ul>
+          </nav><!-- 分页 end -->
+        </div><!-- .col-md-9 end -->
+
+        <!-- 右侧栏目 -->
+        <div class="col-lg-3 aside pl-1">
+          <!-- 热门标签 -->
+          <div class="card ">
+            <div class="card-header">
+              <i class="fa fa-tags" aria-hidden="true"></i> <span>热门标签</span>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-lg-12">
+                  <a href="/blogs?tag=1">
+                    <span class="badge badge-success">Web Design</span>
+                  </a>
+                  <!-- /* -->
+                  <a href="/blogs?tag=2"> <span class="badge badge-success">运维</span></a>
+                  <a href="/blogs?tag=3"> <span class="badge badge-success">JavaScript</span></a>
+                  <a href="/blogs?tag=4"> <span class="badge badge-success">服务器</span></a>
+                  <a href="/blogs?tag=5"> <span class="badge badge-success">Java</span></a>
+                  <a href="/blogs?tag=6"> <span class="badge badge-success">Freebies</span></a>
+                  <a href="/blogs?tag=7"> <span class="badge badge-success">Web Design</span></a>
+                  <a href="/blogs?tag=8"> <span class="badge badge-success">人工智能</span></a>
+                  <a href="/blogs?tag=9"> <span class="badge badge-success">JavaScript</span></a>
+                  <a href="/blogs?tag=10"> <span class="badge badge-success">CSS</span></a>
+                  <a href="/blogs?tag=11"> <span class="badge badge-success">Java</span></a>
+                  <a href="/blogs?tag=12"> <span class="badge badge-success">Web Design</span></a>
+                  <!-- */ -->
+                </div>
+              </div>
+            </div>
+          </div><!-- .card end -->
+
+          <!-- 热门用户 -->
+          <div class="card my-4">
+            <div class="card-header">
+              <i class="fa fa-users" aria-hidden="true"></i> <span>热门用户</span>
+            </div>
+            <div class="card-body ">
+              <div class="blog-avatal-rect">
+                 <a href="/userspace/user.html" title="一舞翩跹">
+                   <img class="img-fluid blog-avatar-50" src="../static/images/avatar-1.jpg" alt="一舞翩跹">
+                 </a>
+              </div>
+              <div class="blog-avatal-rect">
+                 <a href="/userspace/user.html" title="一舞翩跹">
+                   <img class="img-fluid blog-avatar-50" src="../static/images/avatar-1.jpg" alt="一舞翩跹">
+                 </a>
+              </div>
+              <div class="blog-avatal-rect1">
+                 <a href="/userspace/user.html" title="一舞翩跹">
+                   <img class="img-fluid blog-avatar-50" src="../static/images/avatar-1.jpg" alt="一舞翩跹">
+                 </a>
+              </div>
+
+            </div>
+          </div><!-- card end -->
+
+          <!-- 热门文章 -->
+          <div class="card my-4">
+            <div class="card-header">
+              <i class="fa fa-fire" aria-hidden="true"></i> <span>热门文章</span>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item" th:each="hotblog, hotblogStat : ${hotest}" th:object="${hotblog}">
+                <a class="small" href="/userspace/user.html" title="一舞翩跹">
+                  <span class="badge badge-danger badge-pill ml-2">120</span>
+                </a>
+              </li>
+              <!-- /*
+              <li class="list-group-item">
+                <a class="small" href="/u/waylau/blogs/1" title="waylau">Spring Data + Thymeleaf 3 + Bootstrap 4 实现分页器<span class="badge badge-danger badge-pill">11115</span></a>
+              </li>
+              <li class="list-group-item">
+                <a class="small" href="/u/waylau/blogs/1" title="waylau">用大白话聊聊分布式系统<span class="badge badge-warning badge-pill">338</span></a>
+              </li>
+              <li class="list-group-item">
+                <a class="small" href="/u/waylau/blogs/1" title="waylau">使用 Eclipse Checkstyle Plugin<span class="badge badge-warning badge-pill">189</span></a>
+              </li>
+              */ -->
+            </ul>
+          </div>
+
+          <!-- 最新发布 -->
+          <div class="card my-4">
+            <div class="card-header">
+              <i class="fa fa-line-chart" aria-hidden="true"></i> <span>最新发布</span>
+            </div>
+            <ul class="list-group">
+              <li class="list-group-item" th:each="newblog : ${newest}" th:object="${newblog}">
+                <a class="small" href="/blogs/blog.html" title="一舞翩跹">Spring Data + Thymeleaf 3 + Bootstrap 4 实现分页器</a>
+              </li>
+              <!-- /*
+              <li class="list-group-item">
+                 <a class="small" href="/u/waylau/blogs/1" title="waylau">Spring Data + Thymeleaf 3 + Bootstrap 4 实现分页器</a>
+               </li>
+               <li class="list-group-item">
+                 <a class="small" href="/u/waylau/blogs/1" title="waylau">用大白话聊聊分布式系统</a>
+               </li>
+               <li class="list-group-item">
+                 <a class="small" href="/u/waylau/blogs/1" title="waylau">使用 Eclipse Checkstyle Plugin</a>
+               </li>
+               */ -->
+            </ul>
+          </div>
+
+        </div><!-- .col-md-3 end -->
+
+      </div><!-- .row end -->
+    </main><!-- /.container -->
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <!-- Javascript -->
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- toastr 通知插件 -->
+    <script src="https://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+    <!-- 分页插件 -->
+    <script src="../../static/js/thymeleaf-bootstrap-paginator.js"></script>
+    <!-- JavaScript -->
+    <script src="../../js/index.js"></script>
+
+  </body>
+</html>
