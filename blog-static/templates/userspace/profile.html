@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Thymeleaf in action</title>
+  <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../static/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/cropperjs/1.5.1/cropper.css">
+  <link rel="stylesheet" href="../../static/css/sticky-footer-navbar.css">
+  <link rel="stylesheet" href="../../static/css/index.css">
+  <link rel="stylesheet" href="../../static/css/crapper-avatar.css">
+
+</head>
+<body>
+
+  <!-- header -->
+  <div></div>
+
+  <main class="container blog-content-container">
+    <div class="row">
+      <!-- 左侧栏目 -->
+      <div class="col-md-3">
+        <div class="card mb-3">
+          <div class="card-body text-center">
+            <a href="#" class="blog-edit-avatar" data-toggle="modal" data-target="#exampleModalCenter" role="button">
+              <img class="blog-avatar blog-avatar-160" src="../../static/images/avatar-1.jpg" alt=""/>
+            </a>
+            <h5>一舞翩跹</h5>
+          </div>
+        </div><!-- .card end -->
+
+        <div class="card mb-3">
+          <div class="card-header">
+            <span>个人设置</span>
+          </div>
+          <div class="card-body ">
+            <ul class="list-group list-group-flush ">
+              <li class="list-group-item pl-0">
+                <a href="#" class="card-link">修改个人资料</a>
+              </li>
+              <li class="list-group-item pl-0">
+                <a class="">修改个人密码</a>
+              </li>
+              <li class="list-group-item pl-0">
+                <a class="">修改头像图片</a>
+              </li>
+            </ul>
+          </div>
+        </div><!-- .card end -->
+      </div>
+
+      <!-- 右侧栏目 -->
+      <div class="col-md-9">
+        <!-- 个人设置 -->
+        <div class="card ">
+          <h5 class="card-header">个人设置</h5>
+          <div class="card-body">
+            <form method="post" id="userForm">
+              <input type="hidden" name="id" id="userId">
+              <div class="form-group">
+                <label for="username" class="col-form-label">账号</label>
+                <input type="text" class="form-control" id="username" name="username" readonly="readonly">
+              </div>
+              <div class="form-group">
+                <label for="email" class="col-form-label ">邮箱</label>
+                <input type="email" class="form-control" id="email" name="email" maxlength="50" placeholder="请输入邮箱">
+              </div>
+              <div class="form-group">
+                <label for="name" class="col-form-label">昵称</label>
+                <input type="text" class="form-control" id="name" name="name" maxlength="20" placeholder="请输入昵称，至少2个字符，至多20个">
+              </div>
+              <div class="form-group">
+                <label for="password" class="col-form-label">密码</label>
+                <input type="password" class="form-control" id="password" name="password" maxlength="30" placeholder="请输入密码，至少3个字符，至多30个">
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary">保存</button>
+              </div>
+            </form>
+          </div>
+        </div><!-- .card end -->
+      </div><!-- 右侧栏目 end -->
+    </div><!-- .row end-->
+  </main><!-- .container end-->
+
+
+  <!-- The modal -->
+  <div class="modal fade  " id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="modalLabel">编辑头像</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12">
+                <label class="btn btn-primary btn-upload" for="inputImage" title="选择本地图片">
+                  <input type="file" class="sr-only" id="inputImage" name="file" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff">
+                  <span title="选择本地图片">选择本地图片</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="row mb-2">
+              <div class="col-md-9">
+                <div class="img-container">
+                  <img id="image" src="../../static/images/avatar-default2.jpg" alt="头像"/>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="img-preview preview-rect" style="overflow: hidden; width: 162px; height: 162px"></div>
+                <div class="img-preview preview-round" style="overflow: hidden; width: 162px; height: 162px; border-radius: 50%"></div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-9 ">
+                <div class="btn-group">
+                  <button class="btn btn-primary" id="button-rotate-left" title="向左旋转"><span class="fa fa-rotate-left"></span></button>
+                  <button class="btn btn-primary" id="button-rotate-right" title="向右旋转"><span class="fa fa-rotate-right"></span></button>
+                </div>
+                <div class="btn-group">
+                  <button class="btn btn-primary" id="button-scalex" title="左右反转"><span class="fa fa-arrows-h"></span></button>
+                  <button class="btn btn-primary" id="button-scaley" title="上下反转"><span class="fa fa-arrows-v"></span></button>
+                </div>
+                <div class="btn-group">
+                  <button class="btn btn-primary" id="button-crop" title="生成裁剪框"><span class="fa fa-check"></span></button>
+                  <button class="btn btn-primary" id="button-clear" title="移除裁剪框"><span class="fa fa-remove"></span></button>
+                </div>
+                <div class="btn-group">
+                  <button class="btn btn-primary" id="button-reset" title="重置"><span class="fa fa-refresh"></span></button>
+                  <button class="btn btn-primary" id="button-destroy" title="如果cropper销毁了，那就刷新页面吧"><span class="fa fa-power-off"></span></button>
+                </div>
+              </div>
+              <div class="col-md-3">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" data-dismiss="modal" id="submitEdit">提交</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- .modal end -->
+
+  <!-- footer -->
+  <div></div>
+
+  <!-- Bootstrap -->
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <!-- Cropper -->
+  <script src="https://cdn.bootcss.com/cropperjs/1.5.1/cropper.js"></script>
+  <script>
+      const image = document.getElementById("image");
+
+      var cropper = new Cropper(image, {
+          aspectRatio: NaN,
+          viewMode: 0,
+          dragMode: 'move',
+          preview: '.img-preview',
+          minContainerWidth: 544,
+          minContainerHeight: 361,
+
+      });
+
+      $('#button-rotate-left').on('click', function() {
+          cropper.rotate(-45)
+      })
+      $('#button-rotate-right').on('click', function() {
+          cropper.rotate(45)
+      })
+      $('#button-scalex').on('click', function() {
+          var x = cropper.getData().scaleX; //获取原本的 scaleX 取反
+          cropper.scaleX(-x)
+      })
+      $('#button-scaley').on('click', function() {
+          cropper.scaleY(-(cropper.getData().scaleY))
+      })
+      $('#button-crop').on('click', function() {
+          cropper.crop()
+      })
+      $('#button-clear').on('click', function() {
+          cropper.clear()
+      })
+      $('#button-reset').on('click', function() {
+          cropper.reset()
+      })
+      $('#button-destroy').on('click', function() {
+          cropper.destroy()
+      })
+
+      $('#inputImage').on('change', function () {
+          var files = this.files;
+          var file;
+          var URL;
+          var uploadedImageURL;
+          if (files && files.length) {
+              file = files[0];
+
+              if (uploadedImageURL) {
+                  URL.revokeObjectURL(uploadedImageURL);
+              }
+
+              URL = window.URL;
+              uploadedImageURL = URL.createObjectURL(file);
+
+              cropper.replace(uploadedImageURL)
+          }
+          $('#inputImage').val('')
+      })
+
+  </script>
+
+</body>
+</html>

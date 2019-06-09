@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://cdn.bootcss.com/cropperjs/1.5.1/cropper.css" rel="stylesheet">
+</head>
+<body>
+
+  <div>
+    <img id="avatar" src="../../static/images/avatar-default2.jpg"/>
+  </div>
+  <div id="preview" style="width: 200px; height: 200px; overflow: hidden"></div>
+  <div id="message"></div>
+  <button clas="btn btn-outline-info" id="reset">重置</button>
+  <button clas="btn btn-outline-primary" id="replace">替换</button>
+  <button clas="btn btn-outline-primary" id="destroy">销毁</button>
+
+  <button clas="btn btn-outline-info" id="movex">移动x</button>
+  <button clas="btn btn-outline-info" id="movey">移动y</button>
+  <button clas="btn btn-outline-info" id="getCroppedCanvas">获得图片</button>
+
+  <!-- bootstrap -->
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <!-- cropper -->
+  <script src="https://cdn.bootcss.com/cropperjs/1.5.1/cropper.js"></script>
+  <script>
+      const image = document.getElementById('avatar');
+      var cropper = new Cropper(image, {
+          aspectRatio: 1 / 1,
+          viewMode: 2,
+          preview: '#preview',
+          dragMode: 'move',
+
+          // 当插件准备完成的时候
+          /*ready: function(e) {
+              console.log('ready')
+          },
+          cropstart: e => {
+              console.log('cropstart')
+          },
+          cropmove: function(e) {
+              console.log('cropmove')
+          },
+          cropend: function(e) {
+              console.log('cropend')
+          },
+          crop: function(e) {
+              console.log('crop')
+          }*/
+      })
+
+      // cropper 的方法
+      $('#reset').on('click', function () {
+          cropper.reset()
+      })
+      $('#replace').on('click', function () {
+          cropper.replace('1.jpg', false)
+      })
+      $('#destroy').on('click', function () {
+          cropper.destroy()
+      })
+      $('#movex').on('click', function () {
+          cropper.move(1, 0)
+      })
+      $('#movey').on('click', () => {
+          cropper.move(0, 1)
+      })
+
+      $('#getCroppedCanvas').on('click', () => {
+          var croppedCanvas = cropper.getCroppedCanvas().toDataURL("image/jpg");
+          console.log(croppedCanvas)
+          // $.post('http://localhost:8080/c/imgUpload', {"file": croppedCanvas}, function (data) {
+          //
+          // }, "json");
+          // alert(croppedCanvas);
+      })
+
+  </script>
+</body>
+</html>

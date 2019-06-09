@@ -1,0 +1,48 @@
+/*首页*/
+body {
+    /*background-color: #cdeb8e;*/
+    background-image: url('../images/background.png');
+    font-size: 14px;
+}
+main {
+
+    margin-top: 2px;
+    margin-buttom: 2px;
+}
+
+/*.blog-list {
+    font-size: 14px;
+}*/
+
+/* 固定宽度 */
+.blog-container {
+    min-width: 1020px;
+    max-width: 1020px;
+}
+.article {
+    //width: 755px;
+}
+.aside {
+    //width: 265px;
+}
+
+/*h1 {
+    font-size: 20px;
+}*/
+
+/* 侧边栏内边距减小 */
+.aside .card-body {
+    padding: 0.65rem;
+
+}
+
+.blog-avatal-rect {
+    display: inline;
+    padding: 0px;
+    width: 50px;
+    height: 50px;
+}
+
+.avator-upload {
+    width: 100%;
+}

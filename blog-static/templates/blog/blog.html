@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Thymeleaf in action</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../static/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+  <link rel="stylesheet" href="../../static/css/sticky-footer-navbar.css">
+  <link rel="stylesheet" href="../../static/css/index.css">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/chosen/1.8.8.rc6/chosen.css">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-tagsinput/1.3.6/jquery.tagsinput.min.css">
+</head>
+<body>
+
+  <!-- header -->
+  <div></div>
+
+  <main class="container blog-content-container">
+    <div class="row">
+      <!-- Blog Entries Column -->
+      <div class="col-md-9">
+        <!-- Blog Post -->
+        <div class="card mb-4">
+          <div class="card-body">
+
+            <!-- 标题 -->
+            <h1 class="card-title">OAuth 2.0 认证的原理与实践</h1>
+            <!-- 发布信息 -->
+            <div class="card-text d-flex justify-content-between">
+              <div>
+                <span><a class="card-link text-muted" href="../userspace/user.html">一舞翩跹</a></span>
+                <span class="text-muted"> 2017-03-17</span>
+                <span class="ml-2"><i class="fa fa-eye" aria-hidden="true"></i> 122</span>
+                <span class="ml-2"><i class="fa fa-heart-o" aria-hidden="true"></i> 20</span>
+                <span class="ml-2"><i class="fa fa-comment-o" aria-hidden="true"></i> 11</span>
+              </div>
+              <div>
+                <span class="ml-2">
+                  <a href="/blogs/blog-editj.html"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                  <a class="blog-delete-blog" href="javascript:void(0)"><i class="fa fa-times"
+                                                                           aria-hidden="true"></i></a>
+                </span>
+              </div>
+            </div>
+
+            <hr>
+            <!-- 摘要 -->
+            <div class="card-text">
+              <p>使用 OAuth 2.0 认证的的好处是显然易见的。你只需要用同一个账号密码，就能在各个网站进行访问，而免去了在每个网站都进行注册的繁琐过程。本文将介绍 OAuth 2.0 的原理，并基于 Spring
+                Security 和 GitHub 账号，来演示 OAuth 2.0 的认证的过程。</p>
+            </div>
+            <!-- 内容 -->
+            <article class="post-content">
+              <h2 id="什么是-oauth-20">什么是 OAuth 2.0</h2>
+              <p>OAuth 2.0 的规范可以参考 ： <a href="https://tools.ietf.org/html/rfc6749">RFC 6749</a></p>
+              <p>OAuth 是一个开放标准，允许用户让第三方应用访问该用户在某一网站上存储的私密的资源（如照片，视频，联系人列表），而无需将用户名和密码提供给第三方应用。目前，OAuth 的最新版本为2.0</p>
+              <p>
+                OAuth允许用户提供一个令牌，而不是用户名和密码来访问他们存放在特定服务提供者的数据。每一个令牌授权一个特定的网站（例如，视频编辑网站)在特定的时段（例如，接下来的2小时内）内访问特定的资源（例如仅仅是某一相册中的视频）。这样，OAuth允许用户授权第三方网站访问他们存储在另外的服务提供者上的信息，而不需要分享他们的访问许可或他们数据的所有内容。</p>
+              <h2 id="oauth-20-的核心概念">OAuth 2.0 的核心概念</h2>
+              <p>OAuth 2.0 主要有4类角色：</p>
+              <ul>
+                <li>resource owner：资源所有者，指终端的“用户”（user）</li>
+                <li>resource
+                  server：资源服务器，即服务提供商存放受保护资源。访问这些资源，需要获得访问令牌（accesstoken）。它与认证服务器，可以是同一台服务器，也可以是不同的服务器。如果，我们访问新浪博客网站，那么如果使用新浪博客的账号来登录新浪博客网站，那么新浪博客的资源和新浪博客的认证都是同一家，可以认为是同一个服务器。如果，我们是新浪博客账号去登录了知乎，那么显然知乎的资源和新浪的认证不是一个服务器。
+                </li>
+                <li>client：客户端，代表向受保护资源进行资源请求的第三方应用程序。</li>
+                <li>authorization server： 授权服务器， 在验证资源所有者并获得授权成功后，将发放访问令牌给客户端</li>
+              </ul>
+              <h2 id="oauth-20-的认证流程">OAuth 2.0 的认证流程</h2>
+              <p>认证流程如下：</p>
+              <ul>
+                <li>（A）用户打开客户端以后，客户端请求资源所有者（用户）的授权。</li>
+                <li>（B）用户同意给予客户端授权。</li>
+                <li>（C）客户端使用上一步获得的授权，向认证服务器申请访问令牌。</li>
+                <li>（D）认证服务器对客户端进行认证以后，确认无误，同意发放访问令牌。</li>
+                <li>（E）客户端使用访问令牌，向资源服务器申请获取资源。</li>
+                <li>（F）资源服务器确认令牌无误，同意向客户端开放资源。</li>
+              </ul>
+              <p>其中，用户授权有四种模式：</p>
+              <ul>
+                <li>授权码模式（authorization code）</li>
+                <li>简化模式（implicit）</li>
+                <li>密码模式（resource owner password credentials）</li>
+                <li>客户端模式（client credentials）</li>
+              </ul>
+              <h2>源码</h2>
+              <ul>
+                <li>《Spring Security 教程》：<a
+                    href="https://github.com/waylau/spring-security-tutorial/tree/master/samples/oauth2-github">https://github.com/waylau/spring-security-tutorial/tree/master/samples/oauth2-github</a>
+                </li>
+              </ul>
+            </article>
+            <hr>
+
+            <!-- 交互-->
+            <div class="mb-3">
+              <h5>分类：
+                <a>Spring Data</a>
+              </h5>
+              <h5>标签：
+                <a href="#"> <span class="badge badge-secondary">Web Design</span></a>
+                <a href="/u/waylau/blogs?keyword=分布式"> <span class="badge badge-secondary">Jersey</span></a>
+                <a href="/u/waylau/blogs?keyword=分布式"> <span class="badge badge-secondary">JavaScript</span></a>
+                <a href="/u/waylau/blogs?keyword=分布式"> <span class="badge badge-secondary">CSS</span></a>
+                <a href="/u/waylau/blogs?keyword=分布式"> <span class="badge badge-secondary">Java</span></a>
+                <a href="/u/waylau/blogs?keyword=分布式"> <span class="badge badge-secondary">Freebies</span></a>
+              </h5>
+              <div class="d-flex justify-content-center mt-4">
+                <div class="px-2">
+                  <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-outline-secondary">
+                      <i class="fa fa-heart-o" aria-hidden="true"></i>
+                      <span>点赞</span>
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary">0</button>
+                  </div>
+                </div>
+                <div class="px-2">
+                  <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-outline-secondary">
+                      <i class="fa fa-star-o" aria-hidden="true"></i>
+                      <span>收藏</span>
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary">0</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="my-0">
+
+            <!-- 评论-->
+            <section>
+              <h2 class="border-bottom border-grey pb-2 mb-0">评论：</h2>
+              <div class="media pt-3">
+                <img src="../../static/images/avatar-1.jpg" alt="" class="blog-avatar-50 mr-2 rounded">
+                <div class="media-body pb-3 mb-0  lh-125 border-bottom border-gray">
+                  <div class="d-flex justify-content-between muted">
+                    <strong class="d-block text-gray-dark">一舞翩跹</strong>
+                    <time>2019-05-20 12:12:12</time>
+                  </div>
+                  <span>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</span>
+                </div>
+              </div>
+              <div class="media pt-3">
+                <img src="../../static/images/avatar-1.jpg" alt="" class="blog-avatar-50 mr-2 rounded">
+                <div class="media-body pb-3 mb-0  lh-125 border-bottom border-gray">
+                  <div class="d-flex justify-content-between muted">
+                    <strong class="d-block text-gray-dark">一舞翩跹</strong>
+                    <time>2019-05-20 12:12:12</time>
+                  </div>
+                  <span>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</span>
+                </div>
+              </div>
+            </section>
+          </div><!-- card body end -->
+        </div><!-- card end -->
+      </div><!-- left end -->
+
+      <!-- 右侧栏目 -->
+      <div class="col-md-3">
+        <div>
+          <!-- 关于作者 -->
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="text-center">
+                <img class="blog-avatar-85" src="../../static/images/avatar-1.jpg"/>
+                <h5 class="mb-0">一舞翩跹</h5>
+              </div>
+            </div>
+            <div class="card-footer text-center">
+              <span>关于作者</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 作者最近主题 -->
+        <div class="card mb-4">
+          <div class="card-header">
+            <span>作者最近主题</span>
+          </div>
+          <div class="card-body">
+            ...
+          </div>
+        </div>
+      </div><!-- 右侧栏目 end -->
+
+    </div><!-- .row -->
+  </main><!-- .container -->
+
+  <!-- 页脚 -->
+  <div></div>
+
+  <!-- Javascript -->
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <!-- toastr 通知插件 -->
+  <!--<script src="https://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+  <script src="../../static//js/catalog-generator.js"></script>
+  <script src="../../static/js/blogs/blog.js"></script>-->
+
+</body>
+</html>

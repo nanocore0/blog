@@ -1,0 +1,206 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="">
+  <title>Dashboard</title>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <!-- Custom styles for this template -->
+  <link href="../../static/css/dashboard.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../static/font-awesome-4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+  <!-- 导航栏 -->
+
+
+  <div class="container-fluid">
+    <div class="row">
+      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">
+                <span data-feather="home"></span>
+                用户管理 <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="file"></span>
+                权限管理
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="shopping-cart"></span>
+                博客管理
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="users"></span>
+                评论管理
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="layers"></span>
+                报告
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+          <h1 class="h2">用户管理</h1>
+          <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group mr-2">
+              <button class="btn btn-sm btn-outline-secondary">Share</button>
+              <button class="btn btn-sm btn-outline-secondary">Export</button>
+            </div>
+            <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+              <span data-feather="calendar"></span>
+              This week
+            </button>
+          </div>
+        </div>
+
+        <nav class="navbar">
+          <ul class="nav justify-content-start mr-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">时间排序</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">热度排序</a>
+            </li>
+          </ul>
+          <form class="form-inline">
+            <input class="form-control is-valid mr-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-sm btn-outline-success mr-2" type="submit">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+            <button class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#exampleModal">
+              <i class="fa fa-plus" aria-hidden="true"></i>
+            </button>
+          </form>
+        </nav>
+
+        <div class="table-responsive">
+          <table class="table table-striped table-sm">
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>Username</th>
+              <th>Nickname</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Operation</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>1001</td>
+              <td>admin</td>
+              <td>香草冰淇淋</td>
+              <td>pianxian@game.com</td>
+              <td>admin</td>
+              <td>
+                <div>
+                  <a class="btn btn-link btn-sm py-0" data-toggle="modal" data-target="#exampleModal" role="button"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                  <a class="btn btn-link btn-sm py-0" data-toggle="modal" role="button"><i class="fa fa-times" aria-hidden="true"></i></a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>1002</td>
+              <td>nanocore</td>
+              <td>一舞翩跹</td>
+              <td>pianxian@game.com</td>
+              <td>user</td>
+              <td>
+                <div>
+                  <!--  操作 -->
+                  <a class="btn btn-link btn-sm py-0" data-toggle="modal" data-target="#exampleModal" role="button"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                  <a class="btn btn-link btn-sm py-0" data-toggle="modal" role="button"><i class="fa fa-times"  aria-hidden="true"></i></a>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- 添加用户界面 -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <form method="post"  id="userForm">
+              <input type="hidden" name="id" />
+              <div class="form-group">
+                <label for="username" class="col-form-label">账号：</label>
+                <input type="text" class="form-control" id="username" name="username"  placeholder="Enter username" />
+              </div>
+              <div class="form-group">
+                <label for="email" class="col-form-label">邮箱：</label>
+                <input type="email" class="form-control" id="email" name="email"  placeholder="Enter email" />
+              </div>
+              <div class="form-group">
+                <label for="nickname" class="col-form-label">名称：</label>
+                <input type="text" class="form-control" id="nickname" name="nickname" placeholder="Enter nickname" />
+              </div>
+              <div class="form-group">
+                <label for="password" class="col-form-label">密码：</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" />
+              </div>
+              <div class="form-group">
+                <label for="roleId" class="col-form-label">角色：</label>
+                <select class="form-control form-control-chosen" id="roleId" name="authorityId" placeholder="Choose role">
+                  <option value="1">管理员</option>
+                  <option value="2">用户</option>
+                </select>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 页脚 -->
+
+
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+  <script>
+      feather.replace()
+  </script>
+</body>
+</html>
