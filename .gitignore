@@ -1,2 +1,13 @@
-###
+### 
+.git
 .idea
+
+
+
+### blog ###
+.gradle
+gradle
+gradlew
+gradlew.bat
+blog/blog-*/build
+
