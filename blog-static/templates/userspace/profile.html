@@ -17,14 +17,14 @@
   <!-- header -->
   <div></div>
 
-  <main class="container blog-content-container">
+  <main class="container" role="main">
     <div class="row">
       <!-- 左侧栏目 -->
       <div class="col-md-3">
         <div class="card mb-3">
           <div class="card-body text-center">
-            <a href="#" class="blog-edit-avatar" data-toggle="modal" data-target="#exampleModalCenter" role="button">
-              <img class="blog-avatar blog-avatar-160" src="../../static/images/avatar-1.jpg" alt=""/>
+            <a href="#" class="" data-toggle="modal" data-target="#exampleModalCenter" role="button">
+              <img class="blog-avatar blog-avatar-160" src="../../static/images/avatar-default-1.jpg"/>
             </a>
             <h5>一舞翩跹</h5>
           </div>
@@ -72,7 +72,7 @@
               </div>
               <div class="form-group">
                 <label for="password" class="col-form-label">密码</label>
-                <input type="password" class="form-control" id="password" name="password" maxlength="30" placeholder="请输入密码，至少3个字符，至多30个">
+                <input type="password" class="form-control" id="password" name="password" maxlength="30" readonly="readonly">
               </div>
               <div class="form-group">
                 <button type="submit" class="btn btn-primary">保存</button>
@@ -109,11 +109,11 @@
             <div class="row mb-2">
               <div class="col-md-9">
                 <div class="img-container">
-                  <img id="image" src="../../static/images/avatar-default2.jpg" alt="头像"/>
+                  <img id="image" src="../../static/images/avatar-cropper.jpg" alt="头像"/>
                 </div>
               </div>
               <div class="col-md-3">
-                <div class="img-preview preview-rect" style="overflow: hidden; width: 162px; height: 162px"></div>
+                <div class="img-preview preview-rect" style="overflow: hidden; width: 162px; height: 162px; margin-bottom: 10px"></div>
                 <div class="img-preview preview-round" style="overflow: hidden; width: 162px; height: 162px; border-radius: 50%"></div>
               </div>
             </div>
