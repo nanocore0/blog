@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pianxian.blog.mapper.VoteMapper">
+
+    <select id="findVoteById" parameterType="int" resultType="com.pianxian.blog.entity.Vote">
+        SELECT * FROM blog.vote WHERE id = #{id}
+    </select>
+
+    <select id="findVotesListByBlogId" parameterType="int" resultType="com.pianxian.blog.entity.Vote">
+        SELECT * from blog.vote WHERE blog_id = #{blogId}
+    </select>
+
+    <select id="findVoteByBlogIdAndUserId" parameterType="vote" resultType="com.pianxian.blog.entity.Vote">
+        SELECT * FROM blog.vote WHERE blog_id = #{blogId} AND user_id = #{userId}
+    </select>
+
+    <insert id="insertVote" parameterType="vote" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO blog.vote (
+        user_id,
+        blog_id,
+        status
+        )
+        VALUES (
+        #{userId},
+        #{blogId},
+        #{status}
+        )
+    </insert>
+
+    <update id="updateVote" parameterType="vote">
+        UPDATE blog.vote
+        SET
+        user_id = #{userId},
+        blog_id = #{blogId},
+        status = #{status},
+        create_time = #{createTime}
+        WHERE
+        id = #{id}
+    </update>
+
+    <select id="countVotesByBlogId" parameterType="int" resultType="int">
+        SELECT count(*) FROM blog.vote WHERE status = 1 AND  blog_id = #{blogId}
+    </select>
+
+    <select id="countVotesByUserId" parameterType="int" resultType="int">
+        SELECT COUNT(*)
+        FROM blog.vote v
+        INNER JOIN blog.blog b ON v.blog_id = b.id
+        WHERE v.status = 1 AND b.user_id = #{userId}
+    </select>
+
+    <delete id="deleteVote" parameterType="int">
+        DELETE FROM blog.vote WHERE id = #{id}
+    </delete>
+
+    <delete id="deleteVoteByBlogId" parameterType="int">
+        DELETE FROM blog.vote WHERE blog_id = #{blogId}
+    </delete>
+
+    <delete id="deleteVoteByUserId" parameterType="int">
+        DELETE FROM blog.vote WHERE user_id = #{userId}
+    </delete>
+
+</mapper>

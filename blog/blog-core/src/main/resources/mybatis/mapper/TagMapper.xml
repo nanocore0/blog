@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pianxian.blog.mapper.TagMapper">
+
+    <select id="findTagsListByBlogId" parameterType="int" resultType="com.pianxian.blog.entity.Tag">
+        SELECT t.*
+        FROM blog.tag t
+        INNER JOIN blog.blog_tag bt
+        WHERE t.id = bt.tag_id
+        AND blog_id=#{value}
+    </select>
+
+    <select id="findTagByName" parameterType="string" resultType="com.pianxian.blog.entity.Tag">
+        SELECT * FROM blog.tag WHERE `name`=#{value}
+    </select>
+
+    <insert id="insertTag" parameterType="tag" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO blog.tag (`name`) VALUES (#{name})
+    </insert>
+
+    <update id="updateTag" parameterType="tag">
+        UPDATE blog.tag
+        SET
+        `name` = #{name}
+        WHERE
+        id = #{id}
+    </update>
+
+    <delete id="deleteTag" parameterType="int">
+        DELETE FROM blog.tag WHERE id = #{id}
+    </delete>
+
+    <select id="findTagsListOrderByBlogCountDesc" resultType="com.pianxian.blog.entity.Tag">
+        SELECT t.*
+        FROM blog.tag t
+        LEFT JOIN blog.blog_tag bt ON t.id = bt.tag_id
+        GROUP BY t.id
+        ORDER BY COUNT(bt.blog_id) DESC
+    </select>
+
+</mapper>

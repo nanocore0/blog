@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pianxian.blog.mapper.CatalogMapper">
+
+    <select id="findCatalog" parameterType="int" resultType="com.pianxian.blog.entity.Catalog">
+        SELECT * FROM catalog WHERE id=#{id}
+    </select>
+
+    <select id="findCatalogsListByUserId" parameterType="int" resultType="com.pianxian.blog.entity.Catalog">
+        SELECT * FROM catalog WHERE user_id=#{value}
+    </select>
+
+    <insert id="insertCatalog" parameterType="catalog" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO blog.catalog (`name`, `user_id`) VALUES(#{name}, #{userId})
+    </insert>
+
+    <update id="updateCatalog" parameterType="catalog">
+        UPDATE blog.catalog
+	    SET
+	    `name` = #{name},
+	    user_id = #{userId}
+        WHERE
+        id = #{id}
+    </update>
+
+    <delete id="deleteCatalog" parameterType="int">
+        DELETE FROM blog.catalog WHERE id = #{value} ;
+    </delete>
+
+</mapper>

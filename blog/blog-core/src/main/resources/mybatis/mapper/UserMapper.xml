@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pianxian.blog.mapper.UserMapper">
+
+    <select id="findUserById" parameterType="int" resultType="com.pianxian.blog.entity.User">
+        SELECT * FROM blog.user WHERE id=#{id}
+    </select>
+
+    <select id="findUserByUsername" parameterType="string" resultType="com.pianxian.blog.entity.User">
+        SELECT * FROM blog.user WHERE username=#{username}
+    </select>
+
+    <insert id="insertUser" parameterType="user" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO blog.user (
+	    id,
+        username,
+        PASSWORD,
+        nickname,
+        email,
+        avatar,
+        create_time,
+        last_login_time,
+        enabled,
+        account_non_expired,
+        account_non_locked,
+        credentials_non_expired
+        )
+        VALUES (
+        #{id},
+        #{username},
+        #{password},
+        #{nickname},
+        #{email},
+        #{avatar},
+        #{createTime},
+        #{lastLoginTime},
+        #{enabled},
+        #{accountNonExpired},
+        #{accountNonLocked},
+        #{credentialsNonExpired}
+        )
+    </insert>
+
+    <delete id="deleteUserById" parameterType="int">
+        DELETE FROM blog.user WHERE id=#{id}
+    </delete>
+
+    <update id="updateUser" parameterType="user">
+        UPDATE blog.user
+        SET
+        username = #{username},
+        password = #{password},
+        nickname = #{nickname},
+        email = #{email},
+        avatar = #{avatar},
+        create_time = #{createTime},
+        last_login_time = #{lastLoginTime},
+        enabled = #{enabled},
+        account_non_expired = #{accountNonExpired},
+        account_non_locked = #{accountNonLocked},
+        credentials_non_expired = #{credentialsNonExpired}
+        WHERE
+        id = #{id}
+    </update>
+
+    <select id="findUsersList" resultType="com.pianxian.blog.entity.User" >
+        SELECT * FROM blog.user
+    </select>
+
+    <select id="findPermissionsListByUsername" parameterType="string" resultType="com.pianxian.blog.entity.Permission">
+        SELECT p.*
+        FROM blog.user u
+        INNER JOIN blog.user_role ur ON u.id = ur.user_id
+        INNER JOIN blog.role_permission rp ON ur.role_id = rp.role_id
+        INNER JOIN blog.permission p ON rp.permission_id = p.id
+        WHERE u.username=#{value}
+    </select>
+
+    <select id="findUserByNameLike" parameterType="string" resultType="com.pianxian.blog.entity.User">
+        SELECT * FROM blog.user where username like '%${value}%' OR nickname like '%${value}%'
+    </select>
+
+</mapper>

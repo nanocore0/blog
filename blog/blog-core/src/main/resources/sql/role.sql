@@ -1,0 +1,7 @@
+DROP TABLE IF EXISTS `role`;
+CREATE TABLE `role` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `role_name` VARCHAR(50),
+  `role_desc` VARCHAR(50),
+  PRIMARY KEY (`id`)
+) ENGINE=INNODB DEFAULT CHARSET=utf8

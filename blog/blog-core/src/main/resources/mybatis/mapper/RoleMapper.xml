@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pianxian.blog.mapper.RoleMapper">
+
+    <select id="findRolesListByUsername" parameterType="string" resultType="com.pianxian.blog.entity.Role">
+        SELECT r.*
+        FROM blog.user u
+        LEFT JOIN blog.user_role ur ON u.id = ur.user_id
+        LEFT JOIN blog.role r  ON ur.role_id = r.id
+        WHERE u.username = #{username}
+    </select>
+
+</mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pianxian.blog.mapper.BlogTagMapper">
+
+    <insert id="insertATagWithBlog" parameterType="tag">
+        INSERT INTO blog.blog_tag (
+        blog_id,
+        tag_id
+        )
+        VALUES (
+        #{blogId},
+        #{id}
+        )
+    </insert>
+
+    <delete id="deleteATagWithBlog" parameterType="tag">
+        DELETE FROM blog.blog_tag WHERE blog_id = #{blogId} AND tag_id = #{id}
+    </delete>
+
+    <delete id="deleteTagByBlogId" parameterType="int">
+        DELETE FROM blog.blog_tag WHERE blog_id = #{blogId}
+    </delete>
+
+    <delete id="deleteTagByTagId" parameterType="int">
+        DELETE FROM blog.blog_tag WHERE tag_id = #{id}
+    </delete>
+</mapper>

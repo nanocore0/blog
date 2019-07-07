@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pianxian.blog.mapper.CommentMapper">
+
+    <select id="findCommentById" parameterType="int" resultType="com.pianxian.blog.entity.Comment">
+        SELECT * FROM blog.comment WHERE id = #{id}
+    </select>
+
+    <select id="findCommentsListByUserId" parameterType="int" resultType="com.pianxian.blog.entity.Comment">
+        SELECT * FROM blog.comment WHERE user_id = #{value}
+    </select>
+
+    <select id="findCommentsListByBlogId" parameterType="int" resultType="com.pianxian.blog.entity.Comment">
+        SELECT * FROM blog.comment WHERE blog_id = #{value}
+    </select>
+
+    <insert id="insertComment" parameterType="comment" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO blog.comment (
+        id,
+        content,
+        user_id,
+        blog_id,
+        create_time,
+        author,
+        avatar
+        )
+        VALUES (
+        #{id},
+        #{content},
+        #{userId},
+        #{blogId},
+        #{createTime},
+        #{author},
+        #{avatar}
+        )
+    </insert>
+
+    <update id="updateComment" parameterType="comment">
+        UPDATE  blog.comment
+        SET
+        id = #{id},
+        content = #{content},
+	    user_id = #{userId},
+        blog_id = #{blogId},
+        create_time = #{createTime},
+        author = #{author},
+        avatar = #{avatar}
+        WHERE
+        id = #{id}
+    </update>
+
+    <delete id="deleteComment" parameterType="int">
+        DELETE FROM blog.comment WHERE id=#{id}
+    </delete>
+
+    <delete id="deleteCommentByBlogId" parameterType="int">
+        DELETE FROM blog.comment WHERE blog_id=#{blogId}
+    </delete>
+
+    <select id="countCommentsByUserId" parameterType="int" resultType="int">
+        SELECT COUNT(*) FROM blog.comment WHERE user_id=#{userId}
+    </select>
+</mapper>

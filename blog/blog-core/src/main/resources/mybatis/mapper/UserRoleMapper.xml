@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pianxian.blog.mapper.UserRoleMapper">
+
+    <insert id="insertUserRole" >
+        INSERT INTO
+        blog.user_role (
+        user_id,
+        role_id
+        )
+        values (
+        #{userId},
+        #{roleId}
+        )
+    </insert>
+
+    <delete id="deleteUserRolesByUserId" parameterType="int">
+        DELETE FROM blog.user_role WHERE user_id = #{userId}
+    </delete>
+
+    <delete id="deleteUserRolesByRoleId" parameterType="int">
+        DELETE FROM blog.user_role WHERE role_id = #{roleId}
+    </delete>
+
+</mapper>
