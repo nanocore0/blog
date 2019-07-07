@@ -7,5 +7,4 @@ gradle
 gradlew
 gradlew.bat
 blog/build
-blog/blog-*/build
 blog/blog-*/.gitignore
