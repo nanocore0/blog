@@ -6,7 +6,8 @@
 **blog**是后台  
 
 静态页面是用bootstrap做的纯html页面，用到了以下js插件  
-~~jquery-input~~(bootstrap-input)  
+font-awesome  
+bootstrap-tagsinput(原来是jquery-tagsinput，但和vue不兼容)  
 cropper  
 thinker-md(我打算换成editor.md)  
 
@@ -17,7 +18,6 @@ blog
 |-- blog-auth 权限控制，登录  
 |-- blog-search 搜索  
 |-- blog-manage service，controller，文件上传  
-
 前端~~还没做完~~(就快做完了，还需要一点点优化)  
 
 ## 项目部署
@@ -27,4 +27,4 @@ blog
 运行blog-manage里面的Application启动类即可启动
 
 ## 参考
-我在制作这个博客系统过程中参考了以下大佬/网站
+
