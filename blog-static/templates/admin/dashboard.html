@@ -9,17 +9,68 @@
   <title>Dashboard</title>
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../static/font-awesome-4.7.0/css/font-awesome.min.css">
   <!-- Custom styles for this template -->
   <link href="../../static/css/dashboard.css" rel="stylesheet">
-  <link rel="stylesheet" href="../../static/font-awesome-4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 
   <!-- 导航栏 -->
+  <header>
+    <!-- 顶部导航栏 -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">NewStarBlog</a>
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarContainer">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
+      <!-- 收集导航链接、表单和其他内容进行切换 -->
+      <div class="collapse navbar-collapse" id="navbarContainer">
+        <ul class="nav navbar-nav mr-2">
+          <li class="nav-item">
+            <a class="nav-link" href="#">首页<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">阅读<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">时光轴<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">留言板<span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+
+        <form class="form-inline mr-auto">
+          <input class="form-control" type="text" placeholder="Search">
+        </form>
+
+        <!-- 登录判断 -->
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle mr-2" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">admin</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">个人主页</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">个人设置</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">发表博客</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class=" btn btn-outline-success" href="#" role="button">退出</a>
+          </li>
+          <!--<li class="nav-item">
+            <a class="btn btn-outline-success" href="#" role="button">登录</a>
+          </li>-->
+        </ul>
+      </div><!-- .navbar-collspse -->
+    </nav>
+  </header>
 
   <div class="container-fluid">
     <div class="row">
+      <!-- 侧边导航栏 -->
       <nav class="col-md-2 d-none d-md-block bg-light sidebar">
         <div class="sidebar-sticky">
           <ul class="nav flex-column">
@@ -47,53 +98,41 @@
                 评论管理
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <span data-feather="layers"></span>
-                报告
-              </a>
-            </li>
           </ul>
         </div>
       </nav>
 
-      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+      <main class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+        <div class="pb-2 mb-3 border-bottom">
           <h1 class="h2">用户管理</h1>
-          <div class="btn-toolbar mb-2 mb-md-0">
-            <div class="btn-group mr-2">
-              <button class="btn btn-sm btn-outline-secondary">Share</button>
-              <button class="btn btn-sm btn-outline-secondary">Export</button>
-            </div>
-            <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
-              <span data-feather="calendar"></span>
-              This week
-            </button>
-          </div>
         </div>
-
-        <nav class="navbar">
-          <ul class="nav justify-content-start mr-auto">
+        <!-- 用户管理交互 -->
+        <nav class="navbar justify-content-end">
+          <!--<ul class="nav justify-content-start mr-auto">
             <li class="nav-item">
               <a class="nav-link active" href="#">时间排序</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">热度排序</a>
             </li>
-          </ul>
+          </ul>-->
           <form class="form-inline">
-            <input class="form-control is-valid mr-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-sm btn-outline-success mr-2" type="submit">
-              <i class="fa fa-search" aria-hidden="true"></i>
-            </button>
-            <button class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#exampleModal">
+            <div class="input-group">
+              <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+              <div class="input-group-append">
+                <button class="btn btn-outline-success mr-2" type="submit">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+            <button class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal">
               <i class="fa fa-plus" aria-hidden="true"></i>
             </button>
           </form>
         </nav>
-
-        <div class="table-responsive">
-          <table class="table table-striped table-sm">
+        <!-- 用户表格 -->
+        <div class="">
+          <table class="table table-striped">
             <thead>
             <tr>
               <th>#</th>
@@ -106,29 +145,51 @@
             </thead>
             <tbody>
             <tr>
-              <td>1001</td>
+              <td>1</td>
               <td>admin</td>
               <td>香草冰淇淋</td>
               <td>pianxian@game.com</td>
-              <td>admin</td>
+              <td>ADMIN</td>
               <td>
                 <div>
-                  <a class="btn btn-link btn-sm py-0" data-toggle="modal" data-target="#exampleModal" role="button"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                  <a class="btn btn-link btn-sm py-0" data-toggle="modal" role="button"><i class="fa fa-times" aria-hidden="true"></i></a>
+                  <a class="btn btn-link btn-sm py-0" data-toggle="modal" data-target="#exampleModal" role="button">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                  <a class="btn btn-link btn-sm py-0" data-toggle="modal" role="button">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                  </a>
                 </div>
               </td>
             </tr>
             <tr>
-              <td>1002</td>
+              <td>2</td>
               <td>nanocore</td>
               <td>一舞翩跹</td>
               <td>pianxian@game.com</td>
-              <td>user</td>
+              <td>USER</td>
               <td>
                 <div>
-                  <!--  操作 -->
-                  <a class="btn btn-link btn-sm py-0" data-toggle="modal" data-target="#exampleModal" role="button"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                  <a class="btn btn-link btn-sm py-0" data-toggle="modal" role="button"><i class="fa fa-times"  aria-hidden="true"></i></a>
+                  <a class="btn btn-link btn-sm py-0" data-toggle="modal" data-target="#exampleModal" role="button">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                  <a class="btn btn-link btn-sm py-0" data-toggle="modal" role="button">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>小鳄鱼</td>
+              <td>邪恶的小鳄鱼</td>
+              <td>aa@bb.cc</td>
+              <td>USER</td>
+              <td>
+                <div>
+                  <a class="btn btn-link btn-sm py-0" data-toggle="modal" data-target="#exampleModalCenter" role="button">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                  </a>
+                  <a class="btn btn-link btn-sm py-0" data-toggle="modal" role="button">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                  </a>
                 </div>
               </td>
             </tr>
@@ -151,23 +212,23 @@
         </div>
         <div class="modal-body">
           <div class="container">
-            <form method="post"  id="userForm">
-              <input type="hidden" name="id" />
+            <form method="post" id="userForm">
+              <input type="hidden" name="id"/>
               <div class="form-group">
                 <label for="username" class="col-form-label">账号：</label>
-                <input type="text" class="form-control" id="username" name="username"  placeholder="Enter username" />
+                <input type="text" class="form-control" id="username" name="username" placeholder="Enter username"/>
               </div>
               <div class="form-group">
                 <label for="email" class="col-form-label">邮箱：</label>
-                <input type="email" class="form-control" id="email" name="email"  placeholder="Enter email" />
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter email"/>
               </div>
               <div class="form-group">
                 <label for="nickname" class="col-form-label">名称：</label>
-                <input type="text" class="form-control" id="nickname" name="nickname" placeholder="Enter nickname" />
+                <input type="text" class="form-control" id="nickname" name="nickname" placeholder="Enter nickname"/>
               </div>
               <div class="form-group">
                 <label for="password" class="col-form-label">密码：</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" />
+                <input type="password" class="form-control" id="password" name="password" placeholder="Enter password"/>
               </div>
               <div class="form-group">
                 <label for="roleId" class="col-form-label">角色：</label>
@@ -188,7 +249,9 @@
   </div>
 
   <!-- 页脚 -->
-
+  <!--<footer class="footer">
+    <p class="text-center text-muted">welcome to new star blog</span></a></p>
+  </footer>-->
 
   <!-- Bootstrap core JavaScript
   ================================================== -->

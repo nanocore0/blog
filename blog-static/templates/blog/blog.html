@@ -2,11 +2,10 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Thymeleaf in action</title>
+  <title>博客详情</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="../../static/font-awesome-4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
   <link rel="stylesheet" href="../../static/css/sticky-footer-navbar.css">
   <link rel="stylesheet" href="../../static/css/index.css">
   <link rel="stylesheet" href="https://cdn.bootcss.com/chosen/1.8.8.rc6/chosen.css">
@@ -17,7 +16,7 @@
   <!-- header -->
   <div></div>
 
-  <main class="container blog-content-container">
+  <main class="container" role="main">
     <div class="row">
       <!-- Blog Entries Column -->
       <div class="col-md-9">
@@ -31,7 +30,7 @@
             <div class="card-text d-flex justify-content-between">
               <div>
                 <span>
-                  <a class="card-link text-muted" href="../userspace/user.html">一舞翩跹</a>
+                  <a class="card-link text-muted" href="">一舞翩跹</a>
                 </span>
                 <span class="text-muted"> 发布于 2019-12-12</span>
                 <span class="ml-2"><i class="fa fa-eye" aria-hidden="true"></i> 122</span>
@@ -39,9 +38,9 @@
                 <span class="ml-2"><i class="fa fa-comment-o" aria-hidden="true"></i> 11</span>
               </div>
               <div>
-                <span class="ml-2">
-                  <a href="/blogs/edit.html"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                  <a class="blog-delete-blog" href="javascript:void(0)"><i class="fa fa-times" aria-hidden="true"></i></a>
+                <span>
+                  <a class="" href="javascript:void(0)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                  <a class="" href="javascript:void(0)"><i class="fa fa-times" aria-hidden="true"></i></a>
                 </span>
               </div>
             </div>
@@ -94,15 +93,15 @@
             <!-- 交互-->
             <div class="mb-3">
               <h5>分类：
-                <a>Spring Data</a>
+                <a href="#" class="text-success">Spring Data</a>
               </h5>
               <h5>标签：
                 <a href="#"> <span class="badge badge-secondary">Web Design</span></a>
-                <a href="/u/waylau/blogs?keyword=分布式"> <span class="badge badge-secondary">Jersey</span></a>
-                <a href="/u/waylau/blogs?keyword=分布式"> <span class="badge badge-secondary">JavaScript</span></a>
-                <a href="/u/waylau/blogs?keyword=分布式"> <span class="badge badge-secondary">CSS</span></a>
-                <a href="/u/waylau/blogs?keyword=分布式"> <span class="badge badge-secondary">Java</span></a>
-                <a href="/u/waylau/blogs?keyword=分布式"> <span class="badge badge-secondary">Freebies</span></a>
+                <a href="#"> <span class="badge badge-secondary">Jersey</span></a>
+                <a href="#"> <span class="badge badge-secondary">JavaScript</span></a>
+                <a href="#"> <span class="badge badge-secondary">CSS</span></a>
+                <a href="#"> <span class="badge badge-secondary">Java</span></a>
+                <a href="#"> <span class="badge badge-secondary">Freebies</span></a>
               </h5>
               <div class="d-flex justify-content-center mt-4">
                 <div class="px-2">
@@ -118,7 +117,7 @@
                   <div class="btn-group" role="group">
                     <button type="button" class="btn btn-outline-secondary">
                       <i class="fa fa-star-o" aria-hidden="true"></i>
-                      <span>分享</span>
+                      <span>收藏</span>
                     </button>
                     <button type="button" class="btn btn-outline-secondary">0</button>
                   </div>
@@ -131,11 +130,13 @@
             <section>
               <h2 class="border-bottom border-grey pb-2 mb-0">评论：</h2>
               <div class="media pt-3">
-                <img class="blog-avatar-50 mr-2 rounded" src="../../static/images/avatar-default-1.jpg" alt="" >
+                <a href="#">
+                  <img class="blog-avatar-50 mr-2 rounded" src="../../static/images/avatar-default-1.jpg">
+                </a>
                 <div class="media-body border-bottom border-gray pb-3">
-                  <div class="d-flex justify-content-between muted pb-2">
-                    <strong class="d-block text-gray-dark">一舞翩跹</strong>
-                    <time>2019-05-20 12:12:12</time>
+                  <div class="d-flex justify-content-between pb-2">
+                    <a href="#" class="d-block text-dark font-weight-bold">一舞翩跹</a>
+                    <time class="text-muted">2019-05-20 12:12:12</time>
                   </div>
                   <span>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</span>
                 </div>
@@ -145,9 +146,9 @@
                   <img class="blog-avatar-50 mr-2 rounded" src="../../static/images/avatar-default-1.jpg">
                 </a>
                 <div class="media-body border-bottom border-gray pb-3">
-                  <div class="d-flex justify-content-between muted pb-2">
-                    <strong class="d-block text-gray-dark">一舞翩跹</strong>
-                    <time>2019-05-20 12:12:12</time>
+                  <div class="d-flex justify-content-between pb-2">
+                    <a href="#" class="d-block text-dark font-weight-bold">一舞翩跹</a>
+                    <time class="text-muted">2019-05-20 12:12:12</time>
                   </div>
                   <span>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</span>
                 </div>
@@ -155,12 +156,12 @@
               <!-- 发表评论 -->
               <div class="media pt-3">
                 <a href="#">
-                  <img class="blog-avatar-50 mr-2 rounded" src="../../static/images/avatar-default-1.jpg" >
+                  <img class="blog-avatar-50 mr-2 rounded" src="../../static/images/avatar-default-2.jpg" >
                 </a>
                 <div class="media-body border-bottom border-gray pb-3">
-                  <div class="d-flex justify-content-between muted pb-2">
-                    <strong class="d-block text-gray-dark">香草冰淇淋</strong>
-                    <time>现在是 2019-02-30 12:00:00</time>
+                  <div class="d-flex justify-content-between pb-2">
+                    <a href="#" class="d-block text-dark font-weight-bold">香草冰淇淋</a>
+                    <time class="text-muted">现在是 2019-02-30 12:00:00</time>
                   </div>
                   <textarea class="form-control mb-2" rows="3" placeholder="看帖需留言~"></textarea>
                   <button class="btn btn-info btn-sm" >发表评论</button>
@@ -178,25 +179,48 @@
           <div class="card mb-4">
             <div class="card-body">
               <div class="text-center">
-                <img class="blog-avatar-85" src="../../static/images/avatar-default-11.jpg"/>
-                <h5 class="mb-0">一舞翩跹</h5>
+                <img class="blog-avatar-85" src="../../static/images/avatar-default-1.jpg"/>
+                <a class="text-grey" href="#">
+                  <h5 class="text-dark">一舞翩跹</h5>
+                </a>
               </div>
             </div>
-            <div class="card-footer text-center">
-              <span>关于作者</span>
+            <div class="card-footer p-2">
+              <table class="w-100 small">
+                <tbody>
+                <tr align="center">
+                  <td>
+                    <span class="text-muted">主题数</span><br>
+                    <b>10</b>
+                  </td>
+                  <td>
+                    <span class="text-muted">评论数</span><br>
+                    <b>36</b>
+                  </td>
+                  <td>
+                    <span class="text-muted">收到的赞</span><br>
+                    <b>52</b>
+                  </td>
+                  <td>
+                    <span class="text-muted">注册排名</span><br>
+                    <b>2</b>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
 
         <!-- 作者最近主题 -->
-        <div class="card mb-4">
+        <!--<div class="card mb-4">
           <div class="card-header">
             <span>作者最近主题</span>
           </div>
           <div class="card-body">
             ...
           </div>
-        </div>
+        </div>-->
       </div><!-- 右侧栏目 end -->
 
     </div><!-- .row -->
@@ -209,10 +233,6 @@
   <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <!-- toastr 通知插件 -->
-  <!--<script src="https://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
-  <script src="../../static//js/catalog-generator.js"></script>
-  <script src="../../static/js/blogs/blog.js"></script>-->
 
 </body>
 </html>
