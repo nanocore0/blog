@@ -1,13 +1,11 @@
 ### 
 .git
 .idea
-
-
-
-### blog ###
 .gradle
+build
 gradle
 gradlew
 gradlew.bat
+blog/build
 blog/blog-*/build
-
+blog/blog-*/.gitignore
