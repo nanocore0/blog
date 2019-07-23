@@ -18,8 +18,6 @@ public class Blog {
     private String summary;
     @Min(1)
     private Integer userId;
-    @NotBlank
-    private String author;
     private LocalDateTime createTime;
     private LocalDateTime lastEditTime;
     private Integer readSize;
@@ -32,6 +30,7 @@ public class Blog {
     @NotBlank
     private String htmlContent;
 
+    private String author; // 作者
     private List<Tag> tags; // 接收博客的标签
 
     public List<Tag> getTags() {
@@ -40,6 +39,15 @@ public class Blog {
 
     public void setTags(List<Tag> tags) {
         this.tags = tags;
+    }
+
+    @JsonView(BlogListView.class)
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     @JsonView(BlogListView.class)
@@ -67,15 +75,6 @@ public class Blog {
 
     public void setSummary(String summary) {
         this.summary = summary == null ? null : summary.trim();
-    }
-
-    @JsonView(BlogListView.class)
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
     }
 
     @JsonView(BlogListView.class)
