@@ -3,44 +3,89 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pianxian.blog.mapper.BlogMapper">
 
+    <sql id="blogList">
+        b.id,
+        b.title,
+        b.summary,
+        b.user_id,
+        b.catalog_id,
+        b.create_time,
+        b.last_edit_time,
+        b.read_size,
+        b.comment_size,
+        b.vote_size,
+        u.nickname author
+    </sql>
+
+    <sql id="blogDetail">
+        b.id,
+        b.title,
+        b.summary,
+        b.content,
+        b.html_content,
+        b.user_id,
+        b.catalog_id,
+        b.create_time,
+        b.last_edit_time,
+        b.read_size,
+        b.comment_size,
+        b.vote_size,
+        u.nickname author
+    </sql>
+
     <select id="findBlogById" parameterType="int" resultType="com.pianxian.blog.entity.Blog">
-        SELECT * FROM blog.blog WHERE id = #{value}
+        SELECT
+        b.id,
+        b.title,
+        b.summary,
+        b.content,
+        b.html_content,
+        b.user_id,
+        b.catalog_id,
+        b.create_time,
+        b.last_edit_time,
+        b.read_size,
+        b.comment_size,
+        b.vote_size,
+        u.nickname author
+        FROM blog.blog b
+        INNER JOIN blog.user u ON b.user_id = u.id
+        WHERE b.id = #{value}
     </select>
 
     <select id="findAllBlogsList" resultType="com.pianxian.blog.entity.Blog">
         SELECT
-        id,
-        title,
-        summary,
-        user_id,
-        author,
-        create_time,
-        last_edit_time,
-        read_size,
-        comment_size,
-        vote_size,
-        catalog_id
-        FROM
-        blog.blog
+        b.id,
+        b.title,
+        b.summary,
+        b.user_id,
+        b.catalog_id,
+        b.create_time,
+        b.last_edit_time,
+        b.read_size,
+        b.comment_size,
+        b.vote_size,
+        u.nickname author
+        FROM blog.blog b
+        INNER JOIN blog.user u ON b.user_id = u.id
     </select>
 
     <select id="findBlogsListByUserId" parameterType="int" resultType="com.pianxian.blog.entity.Blog">
         SELECT
-        id,
-        title,
-        summary,
-        user_id,
-        author,
-        create_time,
-        last_edit_time,
-        read_size,
-        comment_size,
-        vote_size,
-        catalog_id
-        FROM
-        blog.blog
-        WHERE
-        user_id = #{value}
+        b.id,
+        b.title,
+        b.summary,
+        b.user_id,
+        b.catalog_id,
+        b.create_time,
+        b.last_edit_time,
+        b.read_size,
+        b.comment_size,
+        b.vote_size,
+        u.nickname author
+        FROM blog.blog b
+        INNER JOIN blog.user u ON b.user_id = u.id
+        WHERE b.user_id = #{value}
     </select>
 
     <insert id="insertBlog" parameterType="blog" useGeneratedKeys="true" keyProperty="id">
@@ -51,13 +96,12 @@
         content,
         html_content,
         user_id,
-        author,
+        catalog_id,
         create_time,
         last_edit_time,
         read_size,
         comment_size,
-        vote_size,
-        catalog_id
+        vote_size
         )
         VALUES
         (
@@ -66,13 +110,12 @@
         #{content},
         #{htmlContent},
         #{userId},
-        #{author},
+        #{catalogId},
         #{createTime},
         #{lastEditTime},
         #{readSize},
         #{commentSize},
-        #{voteSize},
-        #{catalogId}
+        #{voteSize}
         )
     </insert>
 
@@ -84,7 +127,6 @@
         content = #{content},
         html_content = #{htmlContent},
         user_id = #{userId},
-        author = #{author},
         create_time =  #{createTime},
         last_edit_time = #{lastEditTime},
         read_size = #{readSize},
@@ -101,188 +143,180 @@
 
     <select id="findAllBlogsListOrderByCreateTimeDesc" resultType="com.pianxian.blog.entity.Blog">
         SELECT
-        id,
-        title,
-        summary,
-        user_id,
-        author,
-        create_time,
-        last_edit_time,
-        read_size,
-        comment_size,
-        vote_size,
-        catalog_id
-        FROM
-        blog.blog
-        ORDER BY create_time DESC
+        b.id,
+        b.title,
+        b.summary,
+        b.user_id,
+        b.catalog_id,
+        b.create_time,
+        b.last_edit_time,
+        b.read_size,
+        b.comment_size,
+        b.vote_size,
+        u.nickname author
+        FROM blog.blog b
+        INNER JOIN blog.user u ON b.user_id = u.id
+        ORDER BY b.create_time DESC
     </select>
 
     <select id="findAllBlogsListOrderByCommentSizeAndVoteSizeAndReadSizeDesc" resultType="com.pianxian.blog.entity.Blog">
         SELECT
-        id,
-        title,
-        summary,
-        user_id,
-        author,
-        create_time,
-        last_edit_time,
-        read_size,
-        comment_size,
-        vote_size,
-        catalog_id
-        FROM
-        blog.blog
-        ORDER BY comment_size DESC, vote_size DESC, read_size DESC
+        b.id,
+        b.title,
+        b.summary,
+        b.user_id,
+        b.catalog_id,
+        b.create_time,
+        b.last_edit_time,
+        b.read_size,
+        b.comment_size,
+        b.vote_size,
+        u.nickname author
+        FROM blog.blog b
+        INNER JOIN blog.user u ON b.user_id = u.id
+        ORDER BY b.comment_size DESC, b.vote_size DESC, b.read_size DESC
     </select>
 
     <select id="findBlogsListByUserIdOrderByCreateTimeDesc" parameterType="int" resultType="com.pianxian.blog.entity.Blog">
         SELECT
-        id,
-        title,
-        summary,
-        user_id,
-        author,
-        create_time,
-        last_edit_time,
-        read_size,
-        comment_size,
-        vote_size,
-        catalog_id
-        FROM
-        blog.blog
-        WHERE user_id = #{userId}
-        ORDER BY create_time DESC
+        b.id,
+        b.title,
+        b.summary,
+        b.user_id,
+        b.catalog_id,
+        b.create_time,
+        b.last_edit_time,
+        b.read_size,
+        b.comment_size,
+        b.vote_size,
+        u.nickname author
+        FROM blog.blog b
+        INNER JOIN blog.user u ON b.user_id = u.id
+        WHERE b.user_id = #{userId}
+        ORDER BY b.create_time DESC
     </select>
 
     <select id="findBlogsListByUserIdOrderByCommentSizeAndVoteSizeAndReadSizeDesc" parameterType="int" resultType="com.pianxian.blog.entity.Blog">
         SELECT
-        id,
-        title,
-        summary,
-        user_id,
-        author,
-        create_time,
-        last_edit_time,
-        read_size,
-        comment_size,
-        vote_size,
-        catalog_id
-        FROM
-        blog.blog
-        WHERE
-        user_id = #{userId}
-        ORDER BY
-        comment_size DESC, vote_size DESC, read_size DESC
+        b.id,
+        b.title,
+        b.summary,
+        b.user_id,
+        b.catalog_id,
+        b.create_time,
+        b.last_edit_time,
+        b.read_size,
+        b.comment_size,
+        b.vote_size,
+        u.nickname author
+        FROM blog.blog b
+        INNER JOIN blog.user u ON b.user_id = u.id
+        WHERE user_id = #{userId}
+        ORDER BY b.comment_size DESC, b.vote_size DESC, b.read_size DESC
     </select>
 
     <select id="findBlogsListByUserIdAndTitleLike"  parameterType="blog" resultType="com.pianxian.blog.entity.Blog">
         SELECT
-        id,
-        title,
-        summary,
-        user_id,
-        author,
-        create_time,
-        last_edit_time,
-        read_size,
-        comment_size,
-        vote_size,
-        catalog_id
-        FROM
-        blog.blog
-        WHERE
-        user_id = #{userId} AND title like '%${title}%'
+        b.id,
+        b.title,
+        b.summary,
+        b.user_id,
+        b.catalog_id,
+        b.create_time,
+        b.last_edit_time,
+        b.read_size,
+        b.comment_size,
+        b.vote_size,
+        u.nickname author
+        FROM blog.blog b
+        INNER JOIN blog.user u ON b.user_id = u.id
+        WHERE b.user_id = #{userId} AND b.title like '%${title}%'
     </select>
 
     <select id="findBlogsListByUserIdAndCatalogId"  parameterType="blog" resultType="com.pianxian.blog.entity.Blog">
         SELECT
-        id,
-        title,
-        summary,
-        user_id,
-        author,
-        create_time,
-        last_edit_time,
-        read_size,
-        comment_size,
-        vote_size,
-        catalog_id
-        FROM
-        blog.blog
-        WHERE
-        user_id = #{userId} AND catalog_id = #{catalogId}
+        b.id,
+        b.title,
+        b.summary,
+        b.user_id,
+        b.catalog_id,
+        b.create_time,
+        b.last_edit_time,
+        b.read_size,
+        b.comment_size,
+        b.vote_size,
+        u.nickname author
+        FROM blog.blog b
+        INNER JOIN blog.user u ON b.user_id = u.id
+        WHERE b.user_id = #{userId} AND b.catalog_id = #{catalogId}
     </select>
 
     <select id="findBlogsListByUserIdAndCatalogIdOrderByCommentSizeAndVoteSizeAndReadSizeDesc"  parameterType="blog" resultType="com.pianxian.blog.entity.Blog">
         SELECT
-        id,
-        title,
-        summary,
-        user_id,
-        author,
-        create_time,
-        last_edit_time,
-        read_size,
-        comment_size,
-        vote_size,
-        catalog_id
-        FROM
-        blog.blog
-        WHERE
-        user_id = #{userId} AND catalog_id = #{catalogId}
-        ORDER BY
-        comment_size DESC, vote_size DESC, read_size DESC
+        b.id,
+        b.title,
+        b.summary,
+        b.user_id,
+        b.catalog_id,
+        b.create_time,
+        b.last_edit_time,
+        b.read_size,
+        b.comment_size,
+        b.vote_size,
+        u.nickname author
+        FROM blog.blog b
+        INNER JOIN blog.user u ON b.user_id = u.id
+        WHERE b.user_id = #{userId} AND b.catalog_id = #{catalogId}
+        ORDER BY b.comment_size DESC, b.vote_size DESC, b.read_size DESC
     </select>
 
     <select id="findBlogsListByUserIdAndCatalogIdOrderByCreateTimeDesc"  parameterType="blog" resultType="com.pianxian.blog.entity.Blog">
         SELECT
-        id,
-        title,
-        summary,
-        user_id,
-        author,
-        create_time,
-        last_edit_time,
-        read_size,
-        comment_size,
-        vote_size,
-        catalog_id
-        FROM
-        blog.blog
-        WHERE
-        user_id = #{userId} AND catalog_id = #{catalogId}
-        ORDER BY
-        create_time DESC
+        b.id,
+        b.title,
+        b.summary,
+        b.user_id,
+        b.catalog_id,
+        b.create_time,
+        b.last_edit_time,
+        b.read_size,
+        b.comment_size,
+        b.vote_size,
+        u.nickname author
+        FROM blog.blog b
+        INNER JOIN blog.user u ON b.user_id = u.id
+        WHERE b.user_id = #{userId} AND b.catalog_id = #{catalogId}
+        ORDER BY b.create_time DESC
     </select>
 
     <select id="findBlogsListByUserIdAndCatalogIdOrdeByCreateTimeDescOrCommentSizeAndVoteSizeAndReadSizeDesc" parameterType="map" resultType="com.pianxian.blog.entity.Blog">
         SELECT
-        id,
-        title,
-        summary,
-        user_id,
-        author,
-        create_time,
-        last_edit_time,
-        read_size,
-        comment_size,
-        vote_size,
-        catalog_id
-        FROM
-        blog.blog
+        b.id,
+        b.title,
+        b.summary,
+        b.user_id,
+        b.catalog_id,
+        b.create_time,
+        b.last_edit_time,
+        b.read_size,
+        b.comment_size,
+        b.vote_size,
+        u.nickname author
+        FROM blog.blog b
+        INNER JOIN blog.user u ON b.user_id = u.id
         <where>
             <if test="userId != null">
-               AND user_id = #{userId}
+               AND b.user_id = #{userId}
             </if>
             <if test="catalogId != null">
-                AND catalog_id = #{catalogId}
+                AND b.catalog_id = #{catalogId}
             </if>
         </where>
         <if test="order != null and order == 'new'">
-            ORDER BY create_time DESC
+            ORDER BY b.create_time DESC
         </if>
         <if test="order != null and order == 'hot'">
-            ORDER BY comment_size DESC, vote_size DESC, read_size DESC
+            ORDER BY b.comment_size DESC, b.vote_size DESC, b.read_size DESC
         </if>
     </select>
 
