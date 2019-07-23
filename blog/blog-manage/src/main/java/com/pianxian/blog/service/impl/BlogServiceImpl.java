@@ -48,7 +48,7 @@ public class BlogServiceImpl implements BlogService {
         if (blog.getId() == null) {
             // 补全博客数据
             User user = userMapper.findUserById(blog.getUserId());
-            blog.setAuthor(user.getNickname());
+            //blog.setAuthor(user.getNickname());
             blog.setCreateTime(LocalDateTime.now());
             blog.setLastEditTime(blog.getCreateTime());
             blog.setReadSize(0);
@@ -81,7 +81,7 @@ public class BlogServiceImpl implements BlogService {
             }
             if (!oldTagExistInNewList) {
                 toDeleteTagsList.add(oldTag);
-                oldTagExistInNewList = false;
+                //oldTagExistInNewList = false;
             }
         }
         for (Tag tag : blog.getTags()) {
@@ -94,7 +94,7 @@ public class BlogServiceImpl implements BlogService {
             }
             if (!newTagExistInOldList) {
                 toAddTagsList.add(tag);
-                newTagExistInOldList = false;
+                //newTagExistInOldList = false;
             }
         }
         logger.info("要增加的标签: " + toAddTagsList);
