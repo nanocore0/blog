@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @MapperScan("com.pianxian.blog.mapper")
 public class MyMybatisConfig {
+
     @Bean
     public ConfigurationCustomizer configurationCustomizer() {
         return (configuration) -> {
