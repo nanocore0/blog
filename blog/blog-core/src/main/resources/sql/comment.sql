@@ -1,11 +1,9 @@
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `content` VARCHAR(225),
-  `user_id` INT(11),
-  `blog_id` INT(11),
-  `author` VARCHAR(50),
-  `avatar` VARCHAR(100),
+  `user_id` INT,
+  `blog_id` INT,
   `create_time` TIMESTAMP,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
