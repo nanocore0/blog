@@ -3,16 +3,66 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pianxian.blog.mapper.CommentMapper">
 
+    <resultMap id="commentMap" type="com.pianxian.blog.entity.Comment">
+        <id property="id" column="id" />
+        <result property="content" column="content" />
+        <result property="user_id" column="user_id" />
+        <result property="blog_id" column="blog_id" />
+        <result property="create_time" column="create_time" />
+        <result property="author" column="nickname" />
+        <result property="avatar" column="avatar" />
+    </resultMap>
+
+    <sql id="comment">
+        c.id,
+        c.content,
+        c.user_id,
+        c.blog_id,
+        c.create_time,
+        u.nickname author,
+        u.avatar avatar
+    </sql>
+
     <select id="findCommentById" parameterType="int" resultType="com.pianxian.blog.entity.Comment">
-        SELECT * FROM blog.comment WHERE id = #{id}
+        SELECT
+        c.id,
+        c.content,
+        c.user_id,
+        c.blog_id,
+        c.create_time,
+        u.nickname author,
+        u.avatar avatar
+        FROM blog.comment c
+        INNER JOIN blog.user u ON c.user_id = u.id
+        WHERE c.id = #{id}
     </select>
 
     <select id="findCommentsListByUserId" parameterType="int" resultType="com.pianxian.blog.entity.Comment">
-        SELECT * FROM blog.comment WHERE user_id = #{value}
+        SELECT
+        c.id,
+        c.content,
+        c.user_id,
+        c.blog_id,
+        c.create_time,
+        u.nickname author,
+        u.avatar avatar
+        FROM blog.comment c
+        INNER JOIN blog.user u ON c.user_id = u.id
+        WHERE c.user_id = #{value}
     </select>
 
     <select id="findCommentsListByBlogId" parameterType="int" resultType="com.pianxian.blog.entity.Comment">
-        SELECT * FROM blog.comment WHERE blog_id = #{value}
+        SELECT
+        c.id,
+        c.content,
+        c.user_id,
+        c.blog_id,
+        c.create_time,
+        u.nickname author,
+        u.avatar avatar
+        FROM blog.comment c
+        INNER JOIN blog.user u ON c.user_id = u.id
+        WHERE c.blog_id = #{value}
     </select>
 
     <insert id="insertComment" parameterType="comment" useGeneratedKeys="true" keyProperty="id">
@@ -21,31 +71,25 @@
         content,
         user_id,
         blog_id,
-        create_time,
-        author,
-        avatar
+        create_time
         )
         VALUES (
         #{id},
         #{content},
         #{userId},
         #{blogId},
-        #{createTime},
-        #{author},
-        #{avatar}
+        #{createTime}
         )
     </insert>
 
     <update id="updateComment" parameterType="comment">
-        UPDATE  blog.comment
+        UPDATE blog.comment
         SET
         id = #{id},
         content = #{content},
 	    user_id = #{userId},
         blog_id = #{blogId},
-        create_time = #{createTime},
-        author = #{author},
-        avatar = #{avatar}
+        create_time = #{createTime}
         WHERE
         id = #{id}
     </update>
