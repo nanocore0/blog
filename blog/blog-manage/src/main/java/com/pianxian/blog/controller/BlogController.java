@@ -38,9 +38,7 @@ public class BlogController {
         } else {
             blogs = bLogService.findBlogsListWithPage(pageNum, pageSize);
         }
-        System.out.println(blogs);
         PageInfo<Blog> page = new PageInfo<>(blogs, 5);
-        System.out.println(page);
         return page;
     }
 
@@ -73,7 +71,6 @@ public class BlogController {
     @PostMapping("/blog")
     public Blog save(@RequestBody @Valid Blog blog) {
         System.out.println(blog);
-
         blog = bLogService.saveOrUpdate(blog);
         return blog;
     }
