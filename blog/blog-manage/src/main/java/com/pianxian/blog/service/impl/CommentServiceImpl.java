@@ -35,9 +35,9 @@ public class CommentServiceImpl implements CommentService {
     public Comment saveOrUpdate(Comment comment) {
         if(comment.getId() == null) {
             // 补全评论数据
-            User user = userMapper.findUserById(comment.getUserId());
-            comment.setAuthor(user.getNickname());
-            comment.setAvatar(user.getAvatar());
+            //User user = userMapper.findUserById(comment.getUserId());
+            //comment.setAuthor(user.getNickname());
+            //comment.setAvatar(user.getAvatar());
 
             commentMapper.insertComment(comment);
             // 评论量 +1
