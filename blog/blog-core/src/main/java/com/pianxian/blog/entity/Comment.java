@@ -13,9 +13,9 @@ public class Comment {
     private Integer userId;
     @Min(1)
     private Integer blogId;
-    @NotBlank
-    private String author; //评论发布人
     private LocalDateTime createTime;
+
+    private String author; // 评论需要显示发布人
     private String avatar; // 评论需要显示头像
 
     public String getAvatar() {
