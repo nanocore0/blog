@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Thymeleaf in action</title>
   <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../static/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../../static/css/sticky-footer-navbar.css">
 
 </head>
 <body>
@@ -19,11 +21,20 @@
 
       <!-- 收集导航链接、表单和其他内容进行切换 -->
       <div class="collapse navbar-collapse" id="navbarContainer">
-        <ul class="nav navbar-nav mr-auto">
+        <ul class="nav navbar-nav mr-2">
           <li class="nav-item">
             <a class="nav-link" href="../index.html">首页<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
+            <a class="nav-link disabled" href="#" title="正在制作中">阅读<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#" title="正在制作中">时光轴<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#" title="正在制作中">留言板<span class="sr-only">(current)</span></a>
+          </li>
+          <!--<li class="nav-item">
             <a class="nav-link" href="">阅读<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
@@ -31,10 +42,11 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="">留言板<span class="sr-only">(current)</span></a>
-          </li>
+          </li>-->
         </ul>
 
-        <form class="form-inline mr-2">
+        <!-- 搜索-->
+        <form class="form-inline mr-auto">
           <input class="form-control" type="text" placeholder="Search">
         </form>
 
@@ -48,7 +60,7 @@
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="../userspace/profile.html">个人设置</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="../blogs/blog-edit.html">发表博客</a>
+              <a class="dropdown-item" href="../blog/edit.html">发表博客</a>
             </div>
           </li>
           <li class="nav-item">
