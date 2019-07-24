@@ -2,16 +2,133 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>NewStarBlog</title>
+  <title>搜索</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/font-awesome-4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../static/css/sticky-footer-navbar.css">
   <link rel="stylesheet" href="../static/css/index.css">
 </head>
 </head>
 <body>
 
+  <!-- header -->
+  <div></div>
 
+  <main class="container" role="main">
+    <div class="row">
+      <div class="col-md-9  article">
+
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="在这里输入搜索的内容">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button">
+              <i class="fa fa-search" aria-hidden="true"></i> 搜一下
+            </button>
+          </div>
+        </div>
+
+        <div class="alert alert-primary" role="alert">
+          <span>搜到 2 条跟 'OAuth' 有关的记录</span>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="card mb-2">
+          <div class="card-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <h5>
+                  <a href="#">OAuth 2.0 认证的原理与实践</a>
+                </h5>
+                <div class="media">
+                  <div class="media-body pr-3">
+                    <p class="">使用 OAuth 2.0 认证的的好处是显然易见的。你只需要用同一个账号密码，就能在各个网站进行访问，而免去了在每个网站都进行注册的繁琐过程。 本文将介绍OAuth 2.0 的原理，并基于 Spring Security 和 GitHub 账号，来演示 OAuth 2.0 的认证的过程。</p>
+                    <div class="text-muted d-flex justify-content-between small">
+                      <div>
+                        <a class="" href="#">一舞翩跹</a>
+                        <span>发表于 2019-4-10</span>
+                      </div>
+                      <div class="text-muted">
+                        <span class="ml-2"><i class="fa fa-eye" aria-hidden="true"></i> 2019-5-20</span>
+                        <span class="ml-2"><i class="fa fa-heart-o" aria-hidden="true"></i> 20</span>
+                        <span class="ml-2"><i class="fa fa-comment-o" aria-hidden="true"></i> 11</span>
+                      </div>
+                    </div>
+                  </div>
+                  <img class="media-right" style="width: 150px" src="../static/images/Chrysanthemum.jpg"/>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <h5>
+                  <a href="#">OAuth 2.0 认证的原理与实践</a>
+                </h5>
+                <div class="media">
+                  <div class="media-body pr-3">
+                    <p class="">使用 OAuth 2.0 认证的的好处是显然易见的。你只需要用同一个账号密码，就能在各个网站进行访问，而免去了在每个网站都进行注册的繁琐过程。 本文将介绍OAuth 2.0 的原理，并基于 Spring Security 和 GitHub 账号，来演示 OAuth 2.0 的认证的过程。</p>
+                    <div class="text-muted d-flex justify-content-between small">
+                      <div>
+                        <a class="" href="#">一舞翩跹</a>
+                        <span>发表于 2019-4-10</span>
+                      </div>
+                      <div class="text-muted">
+                        <span class="ml-2"><i class="fa fa-eye" aria-hidden="true"></i> 2019-5-20</span>
+                        <span class="ml-2"><i class="fa fa-heart-o" aria-hidden="true"></i> 20</span>
+                        <span class="ml-2"><i class="fa fa-comment-o" aria-hidden="true"></i> 11</span>
+                      </div>
+                    </div>
+                  </div>
+                  <img class="media-right" style="width: 150px" src="../static/images/Jellyfish.jpg"/>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div><!-- blogList end -->
+
+        <!-- 分页 -->
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center mb-4">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+              </a>
+            </li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+          </ul>
+        </nav><!-- 分页 end -->
+      </div><!-- left end -->
+
+      <!-- 右侧栏目 -->
+      <div class="col-md-3 aside pl-1">
+        <div class="card mb-4">
+          <div class="card-header">
+            <i class="fa fa-home" aria-hidden="true"></i> <span>关于本站</span>
+          </div>
+          <div class="card-body">
+            <p class="card-text">什么都还没写</p>
+          </div>
+        </div>
+
+      </div><!-- .col-md-3 end -->
+
+    </div><!-- .row end -->
+  </main><!-- /.container -->
+
+
+  <!-- footer -->
+  <div></div>
+
+  <!-- Javascript -->
   <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
