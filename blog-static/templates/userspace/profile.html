@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Thymeleaf in action</title>
+  <title>个人中心</title>
   <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="../../static/font-awesome-4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdn.bootcss.com/cropperjs/1.5.1/cropper.css">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/cropper/4.0.0/cropper.min.css">
   <link rel="stylesheet" href="../../static/css/sticky-footer-navbar.css">
   <link rel="stylesheet" href="../../static/css/index.css">
   <link rel="stylesheet" href="../../static/css/crapper-avatar.css">
@@ -32,7 +32,7 @@
 
         <div class="card mb-3">
           <div class="card-header">
-            <span>个人设置</span>
+            <i class="fa fa-cog" aria-hidden="true"><span> 个人设置</span></i>
           </div>
           <div class="card-body ">
             <ul class="list-group list-group-flush ">
@@ -40,10 +40,10 @@
                 <a href="#" class="card-link">修改个人资料</a>
               </li>
               <li class="list-group-item pl-0">
-                <a class="">修改个人密码</a>
+                <a href="#" class="card-link">修改个人密码</a>
               </li>
               <li class="list-group-item pl-0">
-                <a class="">修改头像图片</a>
+                <a class="card-link">修改头像图片</a>
               </li>
             </ul>
           </div>
@@ -52,30 +52,52 @@
 
       <!-- 右侧栏目 -->
       <div class="col-md-9">
-        <!-- 个人设置 -->
+        <!-- 个人设置-修改个人信息 -->
+        <!--<div class="card ">
+          <h5 class="card-header">修改密码</h5>
+          <div class="card-body">
+            <form>
+              <div class="form-group">
+                <label for="oldPassword" class="col-form-label ">旧密码</label>
+                <input type="password" class="form-control" id="oldPassword" maxlength="50" placeholder="请输入旧密码">
+              </div>
+              <div class="form-group">
+                <label for="newPassword" class="col-form-label ">新密码</label>
+                <input type="password" class="form-control" id="newPassword" maxlength="50" placeholder="请输入新密码">
+              </div>
+              <div class="form-group">
+                <label for="repeatPassword" class="col-form-label">确认新密码</label>
+                <input type="password" class="form-control" id="repeatPassword" maxlength="20" placeholder="请再次输入新密码">
+              </div>
+              <div class="form-group">
+                <button type="button" class="btn btn-primary">提交</button>
+              </div>
+            </form>
+          </div>
+        </div>--><!-- .card end -->
+        <!-- 个人设置-修改密码 -->
         <div class="card ">
           <h5 class="card-header">个人设置</h5>
           <div class="card-body">
-            <form method="post" id="userForm">
-              <input type="hidden" name="id" id="userId">
+            <form method="post">
               <div class="form-group">
                 <label for="username" class="col-form-label">账号</label>
-                <input type="text" class="form-control" id="username" name="username" readonly="readonly">
+                <input type="text" class="form-control" id="username" readonly="readonly">
               </div>
               <div class="form-group">
                 <label for="email" class="col-form-label ">邮箱</label>
-                <input type="email" class="form-control" id="email" name="email" maxlength="50" placeholder="请输入邮箱">
+                <input type="email" class="form-control" id="email" maxlength="50" placeholder="请输入邮箱">
               </div>
               <div class="form-group">
                 <label for="name" class="col-form-label">昵称</label>
-                <input type="text" class="form-control" id="name" name="name" maxlength="20" placeholder="请输入昵称，至少2个字符，至多20个">
+                <input type="text" class="form-control" id="name" maxlength="20" placeholder="请输入昵称，至少2个字符，至多20个">
               </div>
               <div class="form-group">
                 <label for="password" class="col-form-label">密码</label>
-                <input type="password" class="form-control" id="password" name="password" maxlength="30" readonly="readonly">
+                <input type="password" class="form-control" id="password" maxlength="30" readonly="readonly">
               </div>
               <div class="form-group">
-                <button type="submit" class="btn btn-primary">保存</button>
+                <button type="button" class="btn btn-primary">保存</button>
               </div>
             </form>
           </div>
@@ -113,8 +135,8 @@
                 </div>
               </div>
               <div class="col-md-3">
-                <div class="img-preview preview-rect" style="overflow: hidden; width: 162px; height: 162px; margin-bottom: 10px"></div>
-                <div class="img-preview preview-round" style="overflow: hidden; width: 162px; height: 162px; border-radius: 50%"></div>
+                <div class="img-preview preview-rect"></div>
+                <div class="img-preview preview-round"></div>
               </div>
             </div>
 
@@ -159,43 +181,75 @@
   <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <!-- Cropper -->
-  <script src="https://cdn.bootcss.com/cropperjs/1.5.1/cropper.js"></script>
+  <script src="https://cdn.bootcss.com/cropper/4.0.0/cropper.min.js"></script>
   <script>
-      const image = document.getElementById("image");
+      function preview() {
+          var previews = document.getElementsByClassName('img-preview')
+          var width = '162px'
+          previews[0].style.width = width
+          previews[0].style.height = width
+          previews[0].firstChild.style.width = 'inherit'
+          previews[0].firstChild.style.height = 'inherit'
+          previews[1].style.width = width
+          previews[1].style.height = width
+          previews[1].firstChild.style.width = 'inherit'
+          previews[1].firstChild.style.height = 'inherit'
 
-      var cropper = new Cropper(image, {
-          aspectRatio: NaN,
-          viewMode: 0,
+          var crop = $image.cropper('getCropBoxData')
+          //console.log(crop)
+          previews[0].firstChild.style.position = 'fixed'
+          var rect = 'rect(' + crop.top + 'px, ' + crop.width + 'px, ' + crop.height + 'px, ' + (crop.left-86.09400998336108) +'px)'
+          console.log(rect)
+          previews[0].firstChild.style.clip = rect
+      }
+
+      var $image = $('#image')
+      $image.cropper({
+          aspectRatio: 1 / 1, // 正方形
+          viewMode: 1, // 裁剪框不能超过图片
           dragMode: 'move',
           preview: '.img-preview',
           minContainerWidth: 544,
           minContainerHeight: 361,
+          ready: () => {
+              //console.log('ready')
+              //preview()
+          },
+          cropend: () => {
+              //console.log('cropend')
+              //preview()
+          },
+          crop: function (e) {
+              //console.log('crop')
+              //preview()
+          },
+      })
+      var cropper = $image.data('cropper')
 
-      });
-
-      $('#button-rotate-left').on('click', function() {
+      $('#button-rotate-left').on('click', function () {
           cropper.rotate(-45)
       })
-      $('#button-rotate-right').on('click', function() {
+      $('#button-rotate-right').on('click', function () {
           cropper.rotate(45)
       })
-      $('#button-scalex').on('click', function() {
-          var x = cropper.getData().scaleX; //获取原本的 scaleX 取反
+      $('#button-scalex').on('click', function () {
+          // 获取原本的 scaleX 取反
+          var x = cropper.getData().scaleX;
           cropper.scaleX(-x)
       })
-      $('#button-scaley').on('click', function() {
+      $('#button-scaley').on('click', function () {
           cropper.scaleY(-(cropper.getData().scaleY))
       })
-      $('#button-crop').on('click', function() {
+      $('#button-crop').on('click', function () {
           cropper.crop()
       })
-      $('#button-clear').on('click', function() {
+      $('#button-clear').on('click', function () {
           cropper.clear()
       })
-      $('#button-reset').on('click', function() {
+      $('#button-reset').on('click', function () {
           cropper.reset()
       })
-      $('#button-destroy').on('click', function() {
+      $('#button-destroy').on('click', function () {
           cropper.destroy()
       })
 
@@ -218,7 +272,6 @@
           }
           $('#inputImage').val('')
       })
-
   </script>
 
 </body>
