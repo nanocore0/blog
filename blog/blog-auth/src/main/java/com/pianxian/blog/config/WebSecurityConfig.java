@@ -51,7 +51,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // 其他处理
         http.csrf().disable();
         // 加入校验码的配置
-        // 前后端分离没有session，暂时不能用了
+        // 前后端分离没有session，不能用了
         //http.apply(validateCodeSecurityConfig);
     }
 
