@@ -16,9 +16,9 @@ repositories {
 dependencies {
     compile project(':blog-core')
     compile project(':blog-auth')
+    //compile project(':blog-search')
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'org.springframework.boot:spring-boot-starter-cache'
-    compile 'org.springframework:spring-tx:5.1.7.RELEASE'
     runtimeOnly 'org.springframework.boot:spring-boot-devtools'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
