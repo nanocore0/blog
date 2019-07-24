@@ -2,15 +2,19 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>NewStarBlog</title>
+  <title>写博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- thinker-md 与 bootstrap 样式冲突，把 md 放在 bootstrap 前面，让 bootstrap 覆盖 md -->
-  <link href="../../static/thinker-md-dist/stylesheets/thinker-md.vendor.css" rel="stylesheet">
-  <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.bootcss.com/jquery-tagsinput/1.3.6/jquery.tagsinput.min.css" rel="stylesheet">
-  <link href="../../static/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
-  <link href="../../static/css/sticky-footer-navbar.css" rel="stylesheet">
-  <link href="../../static/css/index.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../static/thinker-md-dist/stylesheets/thinker-md.vendor.css">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../static/font-awesome-4.7.0/css/font-awesome.min.css">
+  <!-- jquery tagsinput -->
+  <!--<link href="https://cdn.bootcss.com/jquery-tagsinput/1.3.6/jquery.tagsinput.min.css" rel="stylesheet">-->
+  <!-- bootstrap tagsinput -->
+  <link rel="stylesheet" href="../../static/bootstrap-tagsinput/tagsinput.css">
+  <link rel="stylesheet" href="../../static/css/sticky-footer-navbar.css">
+  <link rel="stylesheet" href="../../static/css/index.css">
+
 </head>
 <body>
 
@@ -18,7 +22,7 @@
   <div></div>
 
   <!-- 编辑博客页面 -->
-  <main class="container blog-content-container">
+  <main class="container" role="main">
     <div class="row">
       <div class="col-md-9">
         <!-- blog post -->
@@ -56,7 +60,7 @@
           <!-- 文章目录 -->
           <div class="card">
             <div class="card-header">
-              <i class="fa fa-file-image-o" aria-hidden="true"></i> <span>图片上传</span>
+              <i class="fa fa-file-text-o" aria-hidden="true"></i> <span>上传附件</span>
             </div>
             <div class="card-body">
               <form enctype="multipart/form-data">
@@ -73,7 +77,7 @@
             <div class="card-body">
               <div class="form-group">
                 <label for="tagsInput">标签：</label>
-                <input type="text" class="form-control form-control-sm" id="tagsInput">
+                <input type="text" class="form-control form-control-sm" data-role="tagsinput" id="tagsInput">
               </div>
               <div class="form-group">
                 <label for="catalog">分类：</label>
@@ -95,19 +99,21 @@
   <!-- footer -->
   <div></div>
 
-
   <!-- bootstrap -->
   <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <!-- jquery-tagsinput 标签插件 -->
-  <script src="https://cdn.bootcss.com/jquery-tagsinput/1.3.6/jquery.tagsinput.min.js"></script>
+  <!--<script src="https://cdn.bootcss.com/jquery-tagsinput/1.3.6/jquery.tagsinput.min.js"></script>-->
+  <!-- bootstrap tagsinput 标签插件 -->
+  <script src="../../static/bootstrap-tagsinput/tagsinput.js"></script>
   <!-- thinker-md -->
   <script src="../../static/thinker-md-dist/javascripts/thinker-md.vendor.min.js"></script>
   <script>
       // 初始化marddown
       $("#md").markdown({
           language: 'zh',
+          height: '280',
           fullscreen: {
               enable: true
           },
@@ -117,11 +123,11 @@
           base64url: 'http://localhost:8081/upload/base64'
       })
       // 初始化标签
-      $('#tagsInput').tagsInput({
+      /*$('#tagsInput').tagsInput({
           'height': 'auto',
           'width': 'auto',
           'defaultText': ''
-      })
+      })*/
   </script>
   <!-- 事件函数 -->
 
