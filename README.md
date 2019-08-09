@@ -15,7 +15,7 @@ thinker-md
 后台项目结构:  
 blog  
 |-- blog-core 实体类，mapper，公共类  
-|-- blog-auth 权限控制，登录  
+|-- blog-auth 权限控制，登录
 |-- blog-search 搜索  
 |-- blog-manage service，controller，文件上传  
 前端~~还没做完~~(~~就快做完了~~(算了)) 
