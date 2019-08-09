@@ -9,7 +9,7 @@
 font-awesome  
 bootstrap-tagsinput(原来是jquery-tagsinput，但和vue不兼容)  
 cropper  
-thinker-md(我打算换成editor.md)  
+thinker-md  
 
 后台主要是使用spring boot完成，用到了mysql数据库，mybatis持久层框架(含分页插件)，spring security认证与授权(含spring security oauth实现授权服务)，elasticsearch全文检索  
 后台项目结构:  
@@ -18,7 +18,7 @@ blog
 |-- blog-auth 权限控制，登录  
 |-- blog-search 搜索  
 |-- blog-manage service，controller，文件上传  
-前端~~还没做完~~(就快做完了，还需要一点点优化)  
+前端~~还没做完~~(~~就快做完了~~(算了)) 
 
 ## 项目部署
 部署后台项仅目有2个地方需要配置和修改  
