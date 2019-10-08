@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://cdn.bootcss.com/cropper/4.0.0/cropper.min.css">
   <link rel="stylesheet" href="../../static/css/sticky-footer-navbar.css">
   <link rel="stylesheet" href="../../static/css/index.css">
-  <link rel="stylesheet" href="../../static/css/crapper-avatar.css">
+  <link rel="stylesheet" href="../../static/css/cropper-avatar.css">
 
 </head>
 <body>
@@ -131,7 +131,7 @@
             <div class="row mb-2">
               <div class="col-md-9">
                 <div class="img-container">
-                  <img id="image" src="../../static/images/avatar-cropper.jpg" alt="头像"/>
+                  <img id="image" src="../../static/images/avatar-cropper.jpg" alt="头像"/><!-- 裁剪图片 -->
                 </div>
               </div>
               <div class="col-md-3">
@@ -205,11 +205,11 @@
 
       var $image = $('#image')
       $image.cropper({
-          aspectRatio: 1 / 1, // 正方形
-          viewMode: 1, // 裁剪框不能超过图片
+          aspectRatio: 1 / 1,
+          viewMode: 1,
           dragMode: 'move',
-          preview: '.img-preview',
-          minContainerWidth: 544,
+          //preview: '.img-preview', //在 modal 中预览不起作用
+          minContainerWidth: 544, //在 modal 中宽和高不能正确显示，需要固定宽和高
           minContainerHeight: 361,
           ready: () => {
               //console.log('ready')
@@ -219,7 +219,7 @@
               //console.log('cropend')
               //preview()
           },
-          crop: function (e) {
+          crop: (e) => {
               //console.log('crop')
               //preview()
           },
