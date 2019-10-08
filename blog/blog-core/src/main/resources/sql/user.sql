@@ -5,7 +5,6 @@ CREATE TABLE `user` (
   `password` VARCHAR(100),
   `nickname` VARCHAR(50),
   `email` VARCHAR(50),
-  `avatar` VARCHAR(100),
   `create_time` DATETIME,
   `last_login_time` DATETIME,
   `enabled` TINYINT,
